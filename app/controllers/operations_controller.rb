@@ -1,6 +1,7 @@
 class OperationsController < ApplicationController
   before_action :get_category
   before_action :set_operation, only: %i[ show edit update destroy ]
+  before_action :set_categories, only: %i[ new edit create update ]
 
   # GET /operations or /operations.json
   def index
@@ -62,13 +63,16 @@ class OperationsController < ApplicationController
     def get_category
       @category = Category.find(params[:category_id])
     end
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_operation
-      @operation = @category.operations.find(params.expect(:id))
+      @operation = @category.operations.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def set_categories
+      @categories = Category.all.pluck(:name, :id)
+    end
+
     def operation_params
-      params.expect(operation: [ :amount, :operation_type, :odate, :description, :category_id ])
+      params.require(:operation).permit(:amount, :operation_type, :odate, :description, :category_id)
     end
 end

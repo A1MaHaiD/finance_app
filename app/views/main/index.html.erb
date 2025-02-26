@@ -1,2 +1,25 @@
 <h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<style type="text/css">
+.col {
+    margin: 8px 40%
+}
+#sign_in {
+    margin: 16px 0px;
+}
+</style>
+
+<form name="user" action="/reports/index" method="GET">
+  <div class="col">
+    <label for="inputFirstName" class="form-label">Ім'я:</label>
+    <input name="firstname" type="text" class="form-control" placeholder="Ім'я:" aria-label="Ім'я:">
+  </div>
+  <div class="col">
+    <label for="inputLastName" class="form-label">Прізвище:</label>
+    <input name="lastname" type="text" class="form-control" placeholder="Прізвище:" aria-label="Прізвище:">
+  </div>
+  <div class="col">
+    <label for="inputPassword" class="form-label">Пароль:</label>
+    <input name="password" type="password" class="form-control" placeholder="Пароль:" aria-label="Пароль:">
+  </div>
+    <input id="sign_in" type="submit" class="btn btn-primary" value="Увійти">
+</form>

@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :operation_type, style: "display: block" %>
-    <%= form.text_field :operation_type %>
+    <%= form.select :operation_type, options_for_select(["Витрати","Натходження"]) %>
   </div>
 
   <div>
@@ -32,10 +32,9 @@
   </div>
 
   <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.text_field :category_id %>
+    <%= select(:operation, :category, options_for_select(@categories)) %>
   </div>
-
+  
   <div>
     <%= form.submit %>
   </div>
