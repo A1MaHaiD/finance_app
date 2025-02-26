@@ -1,2 +1,21 @@
-<h1>Reports#report_by_dates</h1>
-<p>Find me in app/views/reports/report_by_dates.html.erb</p>
+<h1>Розподіл витрат за період:</h1>
+<div style="display: flex; justify-content: center;">
+<canvas id="reportDatesChart" width="700" height="500"></canvas>
+<script>
+    var context = document.getElementById('reportDatesChart').getContext('2d');
+    var chart = new Chart(context, {
+        type: 'line',
+        data: {
+            labels: <%= raw @odates %>,
+            datasets: [{
+                label: 'Кошти',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: <%= raw @amounts %>
+            }]
+        },
+        options: {
+            responsive: false
+        }
+    });
+</script>
