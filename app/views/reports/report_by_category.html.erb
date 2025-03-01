@@ -1,29 +1,30 @@
 <h1 style="margin: 36px 0px">Звіт по витратах в розрізі категорії:</h1>
-<h4 >Розподіл витрат за період</h4>
+<h4>Розподіл витрат за період</h4>
 <div style="display: flex; justify-content: center;">
-<canvas id="reportCategoryChart" width="700" height="500"></canvas>
-<div>
+  <canvas id="reportCategoryChart" width="700" height="500"></canvas>
+</div>
 <script>
-const context = document.getElementById('reportCategoryChart');
-const chart = new Chart(context, {
-    type: 'polarArea',
-    data: {
-        labels: <%= @amounts %>,
-        datasets: [{
-        label: 'Категорія',
-        data: <%= raw @category_id %>,
-        backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(75, 192, 192)',
-        'rgb(255, 205, 86)',
-        'rgb(201, 203, 207)',
-        'rgb(54, 162, 235)'
-        ]  
-        }]
-    },
-        options:{
+    const context = document.getElementById('reportCategoryChart');
+    const chart = new Chart(context, {
+        type: 'polarArea',
+        data: {
+            labels: <%= raw @names.to_json %>,
+            datasets: [{
+                label: 'Категорія',
+                data: <%= raw @sums.to_json %>,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 205, 86)',
+                    'rgb(201, 203, 207)',
+                    'rgb(54, 162, 235)'
+                ]
+            }]
+        },
+        options: {
             responsive: false
         }
-});
+    });
 </script>
+</div>
 </div>

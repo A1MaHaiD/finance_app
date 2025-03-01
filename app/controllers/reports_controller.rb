@@ -1,20 +1,27 @@
 class ReportsController < ApplicationController
+
   def index
+    @categories = Category.all.pluck(:name, :id)
   end
 
   def report_by_category
-    # @operations = Operation.where("category = ?", params[:category])
     # Логіка для формування звіту по категоріям
-    report_by_category = Operation.all.map { |report| [report.amount, report.category_id.to_s] }
-    @amounts = report_by_category.map { |r| r[0]}
-    @category_id = report_by_category.map { |r| r[1] }
+    @report_by_category = Operation.where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
+                                   .where(operation_type: params[:operation_type])
+                                   .group("category")
+                                   .sum(:amount)
+    @names = @report_by_category.keys
+    @sums = @report_by_category.values
   end
 
   def report_by_dates
-    # @operations = Operation.where("date >= ? AND <= ?", params[:start_date], params[:end_date])
     # Логіка для формування звіту по датам
-    report_by_dates = Operation.all.map { |report| [report.amount, report.odate.to_s] }
-    @amounts = report_by_dates.map { |r| r[0]}
-    @odates = report_by_dates.map { |r| r[1] }
+    @report_by_dates = Operation.joins(:category)
+                                .where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
+                                .where(operation_type: params[:operation_type])
+                                .group("odate")
+                                .sum(:amount)
+    @odates = @report_by_dates.keys.map(&:to_s)
+    @amounts = @report_by_dates.values
   end
 end

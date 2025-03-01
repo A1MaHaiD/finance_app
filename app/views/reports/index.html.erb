@@ -1,12 +1,76 @@
-<h1>Reports#index</h1>
+<h1>Генератор звітів</h1>
 <style type="text/css">
-.reports {
-    color: black;
-    margin: 0 10%;
-    text-decoration: none;
-}
+    .align-items-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 8px 0;
+    }
+
+    .reports {
+        margin: 16px 36px;
+        color: black;
+        text-decoration: none;
+    }
+
+    #category_graph, #dates_graph {
+        margin: 16px 16px;
+    }
+
+    #report_form {
+        background-color: #e9efed;
+        margin: 0 550px;
+        border-radius: 15px;
+    }
 </style>
-<div>
-<span><a class="reports" href="/reports/report_by_category/">Звіт по витратах в розрізі категорій</a></span>
-<span><a class="reports"  href="/reports/report_by_dates/" >Розподіл витрат по датах</a></span>
-</div>
+<script>
+    function submitForm(action) {
+        var form = document.getElementById('report_form');
+        form.action = action;
+        form.submit();
+    }
+</script>
+<form id="report_form" name="generate_report" method="GET">
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="start_date" class="col-form-label">Дата DD-MM-YYYY</label>
+    </div>
+    <div class="col-auto">
+      <input type="date" id="start_date" name="start_date" class="form-control">
+    </div>
+  </div>
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="end_date" class="col-form-label">Дата DD-MM-YYYY</label>
+    </div>
+    <div class="col-auto">
+      <input type="date" id="end_date" name="end_date" class="form-control">
+    </div>
+  </div>
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="operation_type" class="col-form-label">Тип операції</label>
+    </div>
+    <div class="col-auto">
+      <select id="operation_type" name="operation_type" class="form-control">
+        <option value="Витрати">Витрати</option>
+        <option value="Натходження">Натходження</option>
+      </select>
+    </div>
+  </div>
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="category" class="col-form-label">Категорії</label>
+    </div>
+    <div class="col-auto">
+<!--      TODO:()  -->
+      <% unless @categories.nil? %>
+        <%= select(:operation, :category, options_for_select(@categories), {}, {name: "category"}) %>
+      <% else %>
+        <p>No categories available</p>
+      <% end %>
+    </div>
+  </div>
+  <input id="category_graph" type="submit" class="btn btn-success" value="Графік" onclick="submitForm('/reports/report_by_category')">
+  <input id="dates_graph" type="submit" class="btn btn-danger" value="По датам" onclick="submitForm('/reports/report_by_dates')">
+</form>
