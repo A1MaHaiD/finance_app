@@ -1,11 +1,27 @@
+<style type="text/css">
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #new_category_form {
+        background-color: #e9efed;
+        width: 550px;
+        border-radius: 15px;
+    }
+</style>
 <% content_for :title, "New category" %>
 
-<h1>New category</h1>
-
-<%= render "form", category: @category %>
-
-<br>
-
-<div>
-  <%= link_to "Back to categories", categories_path %>
+<h1>Реєстрація інформації про категорію доходів / витрат</h1>
+<div class="container">
+  <form name="new_category_form" id="new_category_form" action="/categories" method="post">
+    <%= render "form", category: @category %>
+      <%= link_to "Назад", categories_path %>
+  </form>
 </div>
+
+
+
+
+
+
