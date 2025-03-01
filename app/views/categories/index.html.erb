@@ -1,16 +1,95 @@
-<p style="color: green"><%= notice %></p>
+<style type="text/css">
+    #notice {
+        color: green;
+    }
+
+    .container-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .table {
+        background-color: #e9efed;
+        border-radius: 15px;
+        width: 1000px;
+    }
+
+    #add_category {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        position: absolute;
+        bottom: -50px; /* Adjust the position as needed */
+        left: 350px;
+    }
+
+    .interaction {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-link {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+        width: 24px;
+    }
+
+    .bi-pencil-square, .bi-x-square {
+        font-size: 24px;
+    }
+
+    .bi-pencil-square {
+        color: orange;
+    }
+
+    .bi-x-square {
+        color: red;
+    }
+</style>
+<p id="notice"><%= notice %></p>
 
 <% content_for :title, "Categories" %>
 
-<h1>Categories</h1>
-
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+<h1>Категорії витрат / доходів</h1>
+<div class="container-main">
+  <div id="categories">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th><strong>Назва</strong></th>
+        <th><strong>Опис</strong></th>
+        <th><strong>Управління</strong></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @categories.each_with_index do |category, index| %>
+        <tr id="<%= dom_id(category) %>">
+          <td><%= index + 1 %></td>
+          <td><%= category.name %></td>
+          <td><%= category.description %></td>
+          <td>
+            <div class="interaction">
+              <%= link_to category_path(category), class: "btn btn-link" do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+              <%= button_to category_path(category), method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+                <i class="bi bi-x-square"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="add_category">
+    <%= link_to "Додати нову категорію", new_category_path, class: "btn btn-primary" %>
+  </div>
 </div>
-
-<%= link_to "New category", new_category_path %>
