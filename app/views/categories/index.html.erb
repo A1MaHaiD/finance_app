@@ -76,7 +76,7 @@
           <td><%= category.description %></td>
           <td>
             <div class="interaction">
-              <%= link_to category_path(category), class: "btn btn-link" do %>
+              <%= link_to edit_category_path(category), class: "btn btn-link" do  %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
               <%= button_to category_path(category), method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>

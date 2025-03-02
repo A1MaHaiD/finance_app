@@ -1,10 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<style type="text/css">
+    .icon {
+        display: inline-block;
+        width: 128px;
+        height:  36px;
+        padding: 8px 16px;
+        text-align: center;
+        line-height: 24px;
+        vertical-align: middle;
+        border-radius: 4px;
+        color: white;
+    }
+    .content {
+        padding: 16px;
+    }
+</style>
 
-<%= render @category %>
-
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+<p class="text-success"><%= notice %></p>
+<div class="content">
+  <%= render @category %>
+</div>
+<div class="d-flex justify-content-center">
+  <%= link_to edit_category_path(@category), class: "btn btn-warning" do %>
+    <span class="icon"><i class="bi bi-pencil-square"></i></span>
+  <% end %>
+  <%= link_to categories_path, class: "btn btn-secondary" do %>
+    <span class="icon"><i class="bi bi-arrow-left-square-fill"></i></span>
+  <% end %>
+  <%= button_to @category, method: :delete, class: "btn btn-danger" do %>
+    <span class="icon"><i class="bi bi-x-square"></i></span>
+  <% end %>
 </div>
