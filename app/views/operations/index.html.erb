@@ -1,16 +1,101 @@
-<p style="color: green"><%= notice %></p>
+<style type="text/css">
+    #notice {
+        color: green;
+    }
+
+    .container-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .table {
+        background-color: #e9efed;
+        border-radius: 15px;
+        width: 1700px;
+    }
+
+    #add_operation {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        position: absolute;
+        bottom: -60px; /* Регулюйте позицію за потреби */
+    }
+
+    .interaction {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-link {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+        width: 24px;
+    }
+
+    .bi-pencil-square, .bi-x-square {
+        font-size: 24px;
+    }
+
+    .bi-pencil-square {
+        color: orange;
+    }
+
+    .bi-x-square {
+        color: red;
+    }
+</style>
+
+<p id="notice"><%= notice %></p>
 
 <% content_for :title, "Operations" %>
 
-<h1>Operations</h1>
-
-<div id="operations">
-  <% @operations.each do |operation| %>
-    <%= render operation %>
-    <p>
-      <%= link_to "Show this operation", category_operation_path(@category, operation) %>
-    </p>
-  <% end %>
+<h1>Транзакції</h1>
+<div class="container-main">
+  <div id="operations">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Категорія</th>
+        <th>Тип операції</th>
+        <th>Сума</th>
+        <th>Дата</th>
+        <th>Опис</th>
+        <th>Управління</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @operations.each_with_index do |operation, index| %>
+        <tr id="<%= dom_id(operation) %>">
+          <td><%= index + 1 %></td>
+          <td><%= operation.category.name %></td>
+          <td><%= operation.operation_type %></td>
+          <td><%= operation.amount %></td>
+          <td><%= operation.odate %></td>
+          <td><%= operation.description %></td>
+          <td>
+            <div class="interaction">
+              <%= link_to edit_category_operation_path(@category, operation), class: "btn btn-link" do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+              <%= button_to [@category, @operation], method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+                <i class="bi bi-x-square"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="add_operation">
+    <%= link_to "Додати нову операцію", new_category_operation_path(@category), class: "btn btn-primary" %>
+  </div>
 </div>
-
-<%= link_to "New operation", new_category_operation_path(@category)  %>
