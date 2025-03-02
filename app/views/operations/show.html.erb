@@ -3,8 +3,8 @@
 <%= render @operation %>
 
 <div>
-  <%= link_to "Edit this operation", edit_category_operation_path(@category, @operation) %> |
-  <%= link_to "Back to operations", category_operations_path %>
+  <%= link_to "Редагування транзакції", edit_category_operation_path(@category, @operation) %> |
+  <%= link_to "Назад", category_operations_path %>
 
-  <%= button_to "Destroy this operation", [@category, @operation], method: :delete %>
+  <%= button_to "Видалити цю тразакцію", [@category, @operation], method: :delete %>
 </div>

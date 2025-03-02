@@ -1,12 +1,12 @@
 <% content_for :title, "Editing operation" %>
 
-<h1>Editing operation</h1>
+<h1>Редагування інформації про транзакцію</h1>
 
 <%= render "form", operation: @operation %>
 
 <br>
 
 <div>
-  <%= link_to "Show this operation", [@category, @operation]%> |
-  <%= link_to "Back to operations", category_operations_path(@category) %>
+  <%= link_to "Показати цю операцію", [@category, @operation]%> |
+  <%= link_to "Назад", category_operations_path(@category) %>
 </div>
