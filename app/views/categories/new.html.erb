@@ -8,6 +8,10 @@
         background-color: #e9efed;
         width: 550px;
         border-radius: 15px;
+        padding: 16px;
+    }
+    lint_to {
+
     }
 </style>
 <% content_for :title, "New category" %>
@@ -16,7 +20,6 @@
 <div class="container">
   <form name="new_category_form" id="new_category_form" action="/categories" method="post">
     <%= render "form", category: @category %>
-      <%= link_to "Назад", categories_path %>
   </form>
 </div>
 
