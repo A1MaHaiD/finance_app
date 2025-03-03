@@ -1,26 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/reports/index/">Персональний менеджер фінансів</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/categories/" id="categoriesDropdown" role="button" >
+          <a class="nav-link" href="/categories/" id="categoriesDropdown" role="button">
             Категорії
           </a>
-            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-              <!-- Dropdown items here -->
-            </ul>
+          <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+            <!-- Dropdown items here -->
+          </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="activitiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Транзакції
           </a>
-            <ul class="dropdown-menu" aria-labelledby="activitiesDropdown">
-              <!-- Dropdown items here -->
-            </ul>
+          <ul class="dropdown-menu" aria-labelledby="activitiesDropdown">
+            <% Category.all.each do |category| %>
+              <li>
+                <%= link_to category.name, category_operations_path(category), class: "dropdown-item" %>
+              </li>
+            <% end %>
+          </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="helpDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,12 +38,11 @@
           <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             admin
           </a>
-            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-              <!-- Dropdown items here -->
-            </ul>
+          <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+            <!-- Dropdown items here -->
+          </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-  

@@ -28,7 +28,7 @@ class OperationsController < ApplicationController
 
     respond_to do |format|
       if @operation.save
-        format.html { redirect_to category_operations_path(@operation.category), notice: "Operation was successfully created." }
+        format.html { redirect_to category_operations_path(@operation.category), notice: "Транзакція успішно збережена." }
         format.json { render :show, status: :created, location: @operation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class OperationsController < ApplicationController
   def update
     respond_to do |format|
       if @operation.update(operation_params)
-        format.html { redirect_to category_operations_path(@category), notice: "Operation was successfully updated." }
+        format.html { redirect_to category_operations_path(@category), notice: "Транзакція успішно оновлена." }
         format.json { render :show, status: :ok, location: @operation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class OperationsController < ApplicationController
     @operation.destroy!
 
     respond_to do |format|
-      format.html { redirect_to category_operations_path(@category), status: :see_other, notice: "Operation was successfully destroyed." }
+      format.html { redirect_to category_operations_path(@category), status: :see_other, notice: "Транзакція успішно видалена." }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,9 @@ class OperationsController < ApplicationController
 
   def set_operation
     @operation = @category.operations.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Транзакція не знайдена."
+    redirect_to category_operations_path(@category)
   end
 
   def set_categories
