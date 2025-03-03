@@ -24,10 +24,11 @@ class OperationsController < ApplicationController
   # POST /operations or /operations.json
   def create
     @operation = @category.operations.build(operation_params)
+    @operation.category_id = params[:operation][:category_id]
 
     respond_to do |format|
       if @operation.save
-        format.html { redirect_to category_operations_path(@category), notice: "Operation was successfully created." }
+        format.html { redirect_to category_operations_path(@operation.category), notice: "Operation was successfully created." }
         format.json { render :show, status: :created, location: @operation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -60,19 +61,19 @@ class OperationsController < ApplicationController
   end
 
   private
-    def get_category
-      @category = Category.find(params[:category_id])
-    end
-    
-    def set_operation
-      @operation = @category.operations.find(params[:id])
-    end
+  def get_category
+    @category = Category.find(params[:category_id])
+  end
 
-    def set_categories
-      @categories = Category.all.pluck(:name, :id)
-    end
+  def set_operation
+    @operation = @category.operations.find(params[:id])
+  end
 
-    def operation_params
-      params.require(:operation).permit(:amount, :operation_type, :odate, :description, :category_id)
-    end
+  def set_categories
+    @categories = Category.all.map { |c| [c.name, c.id] }
+  end
+
+  def operation_params
+    params.require(:operation).permit(:amount, :operation_type, :odate, :description, :category_id)
+  end
 end
