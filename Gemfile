@@ -34,6 +34,9 @@ gem "bootsnap", require: false
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
+# Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator for Rails 4+
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
+
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 

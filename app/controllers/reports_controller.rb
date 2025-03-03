@@ -6,9 +6,10 @@ class ReportsController < ApplicationController
 
   def report_by_category
     # Логіка для формування звіту по категоріям
-    @report_by_category = Operation.where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
+    @report_by_category = Operation.joins(:category)
+                                   .where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
                                    .where(operation_type: params[:operation_type])
-                                   .group("category")
+                                   .group('categories.name')
                                    .sum(:amount)
     @names = @report_by_category.keys
     @sums = @report_by_category.values

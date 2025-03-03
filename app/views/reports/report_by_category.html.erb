@@ -1,12 +1,12 @@
 <h1 style="margin: 36px 0px">Звіт по витратах в розрізі категорії:</h1>
 <h4>Розподіл витрат за період</h4>
 <div style="display: flex; justify-content: center;">
-  <canvas id="reportCategoryChart" width="700" height="500"></canvas>
+  <canvas id="reportCategoryChart" width="1800" height="700"></canvas>
 </div>
 <script>
     const context = document.getElementById('reportCategoryChart');
     const chart = new Chart(context, {
-        type: 'polarArea',
+        type: 'doughnut',
         data: {
             labels: <%= raw @names.to_json %>,
             datasets: [{
@@ -16,13 +16,34 @@
                     'rgb(255, 99, 132)',
                     'rgb(75, 192, 192)',
                     'rgb(255, 205, 86)',
-                    'rgb(201, 203, 207)',
+                    'rgb(119,174,135)',
+                    'rgb(155,170,84)',
+                    'rgb(188,88,171)',
+                    'rgb(207,112,93)',
+                    'rgb(82,172,150)',
+                    'rgb(140,58,97)',
+                    'rgb(33,95,158)',
+                    'rgb(129,108,20)',
+                    'rgb(84,60,126)',
+                    'rgb(230,85,42)',
                     'rgb(54, 162, 235)'
                 ]
             }]
         },
         options: {
-            responsive: false
+            responsive: false,
+            cutout: 0,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 16,
+                            bold:
+                                true
+                        }
+                    }
+                }
+            }
         }
     });
 </script>

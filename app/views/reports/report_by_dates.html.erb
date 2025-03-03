@@ -1,6 +1,6 @@
 <h1>Розподіл витрат за період:</h1>
 <div style="display: flex; justify-content: center;">
-<canvas id="reportDatesChart" width="700" height="500"></canvas>
+<canvas id="reportDatesChart" width="1800" height="800"></canvas>
 <script>
     var context = document.getElementById('reportDatesChart').getContext('2d');
     var chart = new Chart(context, {
@@ -9,13 +9,24 @@
             labels: <%= raw @odates %>,
             datasets: [{
                 label: 'Кошти',
-                backgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(99,125,255)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: <%= raw @amounts %>
             }]
         },
         options: {
-            responsive: false
+            responsive: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 16,
+                            bold:
+                              true
+                        }
+                    }
+                }
+            }
         }
     });
 </script>

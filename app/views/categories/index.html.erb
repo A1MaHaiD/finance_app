@@ -5,7 +5,7 @@
 
     .container-main {
         display: flex;
-        justify-content: center;
+        flex-direction: column; /* Add this to stack children vertically */
         align-items: center;
         position: relative;
     }
@@ -17,12 +17,11 @@
     }
 
     #add_category {
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-        position: absolute;
-        bottom: -50px; /* Adjust the position as needed */
-        left: 350px;
+        margin-top: 20px; /* Add some margin for spacing */
+    }
+
+    .pagination {
+        margin-top: 10px; /* Add some margin for spacing */
     }
 
     .interaction {
@@ -76,7 +75,7 @@
           <td><%= category.description %></td>
           <td>
             <div class="interaction">
-              <%= link_to edit_category_path(category), class: "btn btn-link" do  %>
+              <%= link_to edit_category_path(category), class: "btn btn-link" do %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
               <%= button_to category_path(category), method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
@@ -89,7 +88,13 @@
       </tbody>
     </table>
   </div>
-  <div id="add_category">
-    <%= link_to "Додати нову категорію", new_category_path, class: "btn btn-primary" %>
+  <div>
+    <span id="add_category">
+      <%= link_to "Додати нову категорію", new_category_path, class: "btn btn-primary" %>
+    </span>
+    <span class="pagination">
+      <%= paginate @categories %>
+    </span>
   </div>
+
 </div>
