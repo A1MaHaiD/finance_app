@@ -19,9 +19,18 @@
             Транзакції
           </a>
           <ul class="dropdown-menu" aria-labelledby="activitiesDropdown">
-            <% Category.all.each do |category| %>
+            <% if Category.any? %>
+              <% Category.all.each do |category| %>
+                <li>
+                  <%= link_to category.name, category_operations_path(category), class: "dropdown-item" %>
+                </li>
+              <% end %>
               <li>
-                <%= link_to category.name, category_operations_path(category), class: "dropdown-item" %>
+                <%= link_to "Усі транзакції", all_operations_path, class: "dropdown-item" %>
+              </li>
+            <% else %>
+              <li>
+                <span class="dropdown-item disabled">Усі транзакції</span>
               </li>
             <% end %>
           </ul>

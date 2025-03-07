@@ -1,11 +1,17 @@
 class OperationsController < ApplicationController
-  before_action :get_category
-  before_action :set_operation, only: %i[ show edit update destroy ]
-  before_action :set_categories, only: %i[ new edit create update ]
+  before_action :get_category, except: %i[all_operations]
+  before_action :set_operation, only: %i[show edit update destroy]
+  before_action :set_categories, only: %i[new edit create update]
 
   # GET /operations or /operations.json
   def index
+    @operations = @category.operations.page(params[:page])
+  end
+
+  # GET /all_operations
+  def all_operations
     @operations = Operation.page(params[:page])
+    @category = Category.first # Задаємо значення @category для використання в представленні
   end
 
   # GET /operations/1 or /operations/1.json
@@ -52,15 +58,15 @@ class OperationsController < ApplicationController
 
   # DELETE /operations/1 or /operations/1.json
   def destroy
-    @operation.destroy!
-
+    @operation.destroy
     respond_to do |format|
-      format.html { redirect_to category_operations_path(@category), status: :see_other, notice: "Транзакція успішно видалена." }
+      format.html { redirect_to category_operations_path(@category), notice: "Транзакція успішно видалена." }
       format.json { head :no_content }
     end
   end
 
   private
+
   def get_category
     @category = Category.find(params[:category_id])
   end
