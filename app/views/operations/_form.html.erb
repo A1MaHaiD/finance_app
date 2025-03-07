@@ -24,6 +24,9 @@
           flex-direction: column;
           align-items: center;
       }
+      .btn-primary {
+          width: 100px;
+      }
   </style>
   <div class="fields-layout-container">
     <div class="form-layout">
@@ -47,7 +50,7 @@
 
         <div class="fields-layout">
           <label class="form-label">Тип операції</label>
-          <%= form.select :operation_type, options_for_select(["Витрати", "Натходження"]) %>
+          <%= form.select :operation_type, options_for_select(["Витрати", "Доходи"]) %>
         </div>
 
         <div class="fields-layout">
@@ -66,7 +69,7 @@
         </div>
 
         <div id="create">
-          <span><%= form.submit class: "btn btn-primary", value: "Зберегти" %></span>
+          <span><%= form.submit class: "btn btn-success", value: "Зберегти" %></span>
           <span><%= link_to "Назад", category_operations_path(@category), class: "btn btn-primary" %></span>
         </div>
       <% end %>

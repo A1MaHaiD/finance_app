@@ -1,8 +1,53 @@
 <style type="text/css">
+    #notice {
+        color: green;
+    }
+    .container-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    .table {
+        background-color: #e9efed;
+        border-radius: 15px;
+        width: 800px; /* Reduced width */
+    }
+    #add_operation, #view_all_operations {
+        margin-top: 20px; /* Adjust positioning as needed */
+    }
+    .pagination {
+        margin-top: 10px;
+    }
+    .interaction {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .btn-link {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        width: 48px;
+    }
+    .bi-pencil-square, .bi-x-square, .bi-arrow-left-square-fill {
+        font-size: 36px;
+    }
+    .bi-pencil-square {
+        color: orange;
+    }
+    .bi-arrow-left-square-fill {
+        color: blue;
+    }
+    .bi-x-square {
+        color: red;
+    }
     .icon {
         display: inline-block;
         width: 128px;
-        height:  36px;
+        height: 36px;
         padding: 8px 16px;
         text-align: center;
         line-height: 24px;
@@ -13,20 +58,45 @@
     .content {
         padding: 16px;
     }
+    td {
+        padding: 8px 16px; /* Reduced padding */
+    }
 </style>
 
-<p class="text-success"><%= notice %></p>
-<div class="content">
-  <%= render @category %>
-</div>
-<div class="d-flex justify-content-center">
-  <%= link_to edit_category_path(@category), class: "btn btn-warning" do %>
-    <span class="icon"><i class="bi bi-pencil-square"></i></span>
-  <% end %>
-  <%= link_to categories_path, class: "btn btn-secondary" do %>
-    <span class="icon"><i class="bi bi-arrow-left-square-fill"></i></span>
-  <% end %>
-  <%= button_to @category, method: :delete, class: "btn btn-danger" do %>
-    <span class="icon"><i class="bi bi-x-square"></i></span>
-  <% end %>
+<p id="notice"><%= notice %></p>
+
+<h1>Категорія</h1>
+<div class="container-main">
+  <div class="content">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Значення</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Назва</td>
+        <td><%= @category.name %></td>
+      </tr>
+      <tr>
+        <td>Опис</td>
+        <td><%= @category.description %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="interaction">
+    <%= link_to edit_category_path(@category), class: "btn btn-link" do %>
+      <i class="bi bi-pencil-square"></i>
+    <% end %>
+    <%= button_to @category, method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+      <i class="bi bi-x-square"></i>
+    <% end %>
+    <%= link_to categories_path, class: "btn btn-link" do %>
+      <i class="bi bi-arrow-left-square-fill"></i>
+    <% end %>
+  </div>
 </div>

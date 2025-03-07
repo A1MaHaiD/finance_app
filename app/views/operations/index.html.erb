@@ -19,6 +19,9 @@
     #add_operation, #view_all_operations {
         margin-top: 20px; /* Adjust positioning as needed */
     }
+    #add_operation {
+        margin-left:  -60px;
+    }
 
     .pagination {
         margin-top: 10px;
@@ -85,10 +88,11 @@
               <%= link_to edit_category_operation_path(@category, operation), class: "btn btn-link" do %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
-              <%= button_to [@category, @operation], method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+              <%= button_to category_operation_path(@category, operation), method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
                 <i class="bi bi-x-square"></i>
               <% end %>
             </div>
+
           </td>
         </tr>
       <% end %>
