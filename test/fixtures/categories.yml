@@ -1,9 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Given
+cat_1:
+  name: 1st_Category
+  description: 1st_description
+  # Given
+cat_2:
+  name: 2nd_Category
+  description: 2nd_description
+  # Given
+cat_5:
+  name: 5th Category
+  description: 5th description
+  # Given
+cat_6:
+  name: 6th Category
+  description: 6th description
 
-one:
-  name: MyString
-  description: MyString
-
-two:
-  name: MyString
-  description: MyString
