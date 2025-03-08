@@ -74,7 +74,7 @@
         <% unless @categories.nil? %>
           <%= select(:operation, :category, options_for_select(@categories), {}, { name: "category" }) %>
         <% else %>
-          <p>No categories available</p>
+          <p>Немає доступних категорій</p>
         <% end %>
       </div>
     </div>
