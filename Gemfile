@@ -61,6 +61,8 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  # Add gem ActiveSupport
+  gem "activesupport"
   gem "capybara"
   gem "selenium-webdriver"
 end
