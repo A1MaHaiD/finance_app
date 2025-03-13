@@ -4,9 +4,9 @@ class OperationTest < ActiveSupport::TestCase
   # Given
   category_sixth = Category.find_by(name: "6th Category")
   category_first = Category.find_by(name: "1st_Category")
-  category_second = Category.find_by(name: "2nd_Category")
 
   test "return true if everything is good" do
+    category_sixth = Category.find_by(name: "6th Category")
     # When
     operation_new = Operation.new(
       amount: 1.09,
@@ -201,6 +201,7 @@ class OperationTest < ActiveSupport::TestCase
   end
 
   test "should save operation with category" do
+    category_first = Category.find_by(name: "1st_Category")
     operation = Operation.new(
       amount: 9.99,
       operation_type: "Витрати",
