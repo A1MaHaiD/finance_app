@@ -10,8 +10,17 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: storage/development.sqlite3
+# For SqLite3
+#  <<: *default
+#  database: storage/development.sqlite3
+
+# For MySql2 database
+  adapter: mysql2
+  encoding: utf8
+  database: finance_app_db
+  username: finance_user
+  password: c_2h13_W
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
