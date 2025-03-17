@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @categories = Category.all.pluck(:name, :id)

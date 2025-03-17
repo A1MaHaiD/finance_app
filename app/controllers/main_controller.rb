@@ -1,4 +1,6 @@
 class MainController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     if params[:firstname].present? && params[:lastname].present? && params[:password].present?
       # Користувач натиснув кнопку "Увійти", перевіряємо дані в базі

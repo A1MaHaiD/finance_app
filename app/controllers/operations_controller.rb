@@ -1,4 +1,6 @@
 class OperationsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :get_category, except: %i[all_operations]
   before_action :set_operation, only: %i[show edit update destroy]
   before_action :set_categories, only: %i[new edit create update]
