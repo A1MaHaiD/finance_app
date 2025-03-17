@@ -4,7 +4,6 @@ class OperationTest < ActiveSupport::TestCase
   # Given
   category_sixth = Category.find_by(name: "6th Category")
   category_first = Category.find_by(name: "1st_Category")
-  category_second = Category.find_by(name: "2nd_Category")
 
   test "return true if everything is good" do
     # When
