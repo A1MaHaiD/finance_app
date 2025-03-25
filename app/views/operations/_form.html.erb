@@ -64,8 +64,11 @@
         </div>
 
         <div class="fields-layout">
-          <label class="form-label">Назва категорії</label>
-          <%= form.select :category_id, options_for_select(@categories, selected: @category.id) %>
+<!--          <label class="form-label">Назва категорії</label>-->
+<!--           <%= form.select :category_id, options_for_select(@categories, selected: @category.id) %> -->
+          <label class="form-label">Категорія</label>
+          <strong><%= @category.name %></strong>
+          <%= form.hidden_field :category_id, value: @category.id %>
         </div>
 
         <div id="create">

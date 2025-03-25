@@ -44,8 +44,11 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 # Use Nokogiri variants [https://rubygems.org/gems/nokogiri]
 gem 'nokogiri', '~> 1.18', '>= 1.18.4'
-# Use Devise variants [https://rubygems.org/gems/devise]
+
+# Use Devise variants for authentication [https://rubygems.org/gems/devise]
 gem 'devise', '~> 4.9', '>= 4.9.4'
+# Use cancancan variants for authorization []
+gem 'cancancan', '~> 3.6', '>= 3.6.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
