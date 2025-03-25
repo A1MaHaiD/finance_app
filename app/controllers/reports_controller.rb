@@ -6,6 +6,10 @@ class ReportsController < ApplicationController
   end
 
   def report_by_category
+    if params[:start_date].blank? || params[:end_date].blank?
+      flash[:alert] = "Будь ласка, заповніть поля початкової та кінцевої дати."
+      redirect_to reports_path and return
+    end
     # Логіка для формування звіту по категоріям
     @report_by_category = current_user.operations.joins(:category)
                                       .where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
@@ -17,6 +21,10 @@ class ReportsController < ApplicationController
   end
 
   def report_by_dates
+    if params[:start_date].blank? || params[:end_date].blank?
+      flash[:alert] = "Будь ласка, заповніть поля початкової та кінцевої дати."
+      redirect_to reports_path and return
+    end
     # Логіка для формування звіту по датам
     @report_by_dates = current_user.operations.joins(:category)
                                    .where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])

@@ -70,7 +70,6 @@
         <label for="category" class="col-form-label">Категорії</label>
       </div>
       <div class="col-auto">
-        <!--      TODO:()  -->
         <% unless @categories.nil? %>
           <%= select(:operation, :category, options_for_select(@categories), {}, { name: "category" }) %>
         <% else %>
