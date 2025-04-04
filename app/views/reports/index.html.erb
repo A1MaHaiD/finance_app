@@ -71,8 +71,8 @@
       </div>
       <div class="col-auto">
         <% unless @categories.nil? %>
-          <%= select(:operation, :category, options_for_select(@categories), {}, { name: "category" }) %>
-        <% else %>
+          <%= select_tag :category, options_for_select(@categories.map { |name, id, _| [name, id] }, selected: params[:category]), class: "form-control" %>
+      <% else %>
           <p>Немає доступних категорій</p>
         <% end %>
       </div>

@@ -41,18 +41,22 @@
           <a class="nav-link dropdown-toggle" href="#" id="helpDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Допомога
           </a>
-          <ul class="dropdown-menu" aria-labelledby="helpDropdown">
-            <!-- Dropdown items here -->
+          <ul class="dropdown-menu" style="padding-inline: 20px" aria-labelledby="helpDropdown">
+              Дві три неділі і буде додано
           </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            admin
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-            <!-- Dropdown items here -->
-          </ul>
-        </li>
+          <li class="nav-item dropdown">
+            <% if current_user.present? %>
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li><%= link_to "Профіль", edit_user_registration_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Вийти", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+              </ul>
+            <% else %>
+              <a class="nav-link" href="<%= new_user_session_path %>">Увійти</a>
+            <% end %>
+          </li>
       </ul>
     </div>
   </div>
