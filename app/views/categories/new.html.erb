@@ -1,24 +1,8 @@
-<style type="text/css">
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    #new_category_form {
-        background-color: #e9efed;
-        width: 550px;
-        border-radius: 15px;
-        padding: 16px;
-    }
-    lint_to {
-
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/form.css">
 <% content_for :title, "New category" %>
-
 <h1>Реєстрація інформації про категорію доходів / витрат</h1>
 <div class="container">
-  <form name="new_category_form" id="new_category_form" action="/categories" method="post">
+  <form name="new_category_form" id="backgroung" action="/categories" method="post">
     <%= render "form", category: @category %>
   </form>
 </div>

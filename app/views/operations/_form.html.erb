@@ -1,80 +1,82 @@
-  <style type="text/css">
-      .fields-layout {
-          margin: 16px;
-          display: flex;
-          align-items: center;
-      }
+<style type="text/css">
+    .fields-layout {
+        margin: 16px;
+        display: flex;
+        align-items: center;
+    }
 
-      .form-label {
-          margin-right: 16px;
-          width: 150px;
-          text-align: right;
-      }
+    .form-label {
+        margin-right: 16px;
+        width: 150px;
+        text-align: right;
+    }
 
-      .form-layout {
-          margin-bottom: 16px;
-          background-color: #e9efed;
-          border-radius: 15px;
-          padding: 16px;
-          width: 550px;
-      }
+    .form-layout {
+        background-color: #e9efed;
+        border-radius: 15px;
+        padding: 16px;
+        width: 550px;
+    }
 
-      .fields-layout-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-      }
-      .btn-primary {
-          width: 100px;
-      }
-  </style>
-  <div class="fields-layout-container">
-    <div class="form-layout">
-      <%= form_with(model: [@category, operation]) do |form| %>
-        <% if operation.errors.any? %>
-          <div style="color: red">
-            <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
+    .fields-layout-container {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-            <ul>
-              <% operation.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+    #button-form {
+        width: 100px;
+    }
+</style>
+<div class="fields-layout-container">
+  <div class="form-layout">
+    <%= form_with(model: [@category, operation]) do |form| %>
+      <% if operation.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
 
-        <div class="fields-layout">
-          <label class="form-label">Сума</label>
-          <%= form.text_field :amount %>
-        </div>
-
-        <div class="fields-layout">
-          <label class="form-label">Тип операції</label>
-          <%= form.select :operation_type, options_for_select(["Витрати", "Доходи"]) %>
-        </div>
-
-        <div class="fields-layout">
-          <label class="form-label">Дата YYYY-MM-DD</label>
-          <%= form.datetime_field :odate %>
-        </div>
-
-        <div class="fields-layout">
-          <label class="form-label">Короткий опис</label>
-          <%= form.text_field :description %>
-        </div>
-
-        <div class="fields-layout">
-<!--          <label class="form-label">Назва категорії</label>-->
-<!--           <%= form.select :category_id, options_for_select(@categories, selected: @category.id) %> -->
-          <label class="form-label">Категорія</label>
-          <strong><%= @category.name %></strong>
-          <%= form.hidden_field :category_id, value: @category.id %>
-        </div>
-
-        <div id="create">
-          <span><%= form.submit class: "btn btn-success", value: "Зберегти" %></span>
-          <span><%= link_to "Назад", category_operations_path(@category), class: "btn btn-primary" %></span>
+          <ul>
+            <% operation.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
-    </div>
+
+      <div class="fields-layout">
+        <label class="form-label">Сума</label>
+        <%= form.text_field :amount %>
+      </div>
+
+      <div class="fields-layout">
+        <label class="form-label">Тип операції</label>
+        <%= form.select :operation_type, options_for_select(["Витрати", "Доходи"]) %>
+      </div>
+
+      <div class="fields-layout">
+        <label class="form-label">Дата YYYY-MM-DD</label>
+        <%= form.datetime_field :odate %>
+      </div>
+
+      <div class="fields-layout">
+        <label class="form-label">Короткий опис</label>
+        <%= form.text_field :description %>
+      </div>
+
+      <div class="fields-layout">
+        <!--          <label class="form-label">Назва категорії</label>-->
+        <!--           <%= form.select :category_id, options_for_select(@categories, selected: @category.id) %> -->
+        <label class="form-label">Категорія</label>
+        <strong><%= @category.name %></strong>
+        <%= form.hidden_field :category_id, value: @category.id %>
+      </div>
+
+      <div id="create">
+        <span><%= form.submit class: "btn btn-success", value: "Зберегти" %></span>
+        <span><%= link_to "Назад", category_operations_path(@category),
+                          class: "btn btn-primary", id: "button-form" %></span>
+      </div>
+    <% end %>
   </div>
+</div>

@@ -4,8 +4,9 @@
     }
 
     .container-main {
+        margin-top: 50px;
         display: flex;
-        flex-direction:  column;
+        flex-direction: column;
         align-items: center;
         position: relative;
     }
@@ -16,15 +17,16 @@
         width: 1700px;
     }
 
-    #add_operation, #view_all_operations {
-        margin-top: 20px; /* Adjust positioning as needed */
-    }
-    #add_operation {
-        margin-left:  -60px;
+    #add_operation, #all_operations {
+        margin: 8px 16px 8px 16px;
+        padding: 8px;
+        width: 200px;
+        /* Adjust positioning as needed */
     }
 
     .pagination {
-        margin-top: 10px;
+        margin: 16px 0 0 0;
+        padding: 0 100px 0 100px;
     }
 
     .interaction {
@@ -99,15 +101,15 @@
       </tbody>
     </table>
   </div>
-  <div>
-    <span id="add_operation">
-      <%= link_to "Додати нову операцію", new_category_operation_path(@category), class: "btn btn-primary" %>
+  <div style="margin-top: 16px;">
+    <span>
+      <%= link_to "Додати нову операцію", new_category_operation_path(@category), class: "btn btn-primary", id: "add_operation"  %>
     </span>
-    <span id="view_all_operations">
-      <%= link_to "Усі транзакції", all_operations_path, class: "btn btn-secondary" %>
-    </span>
-    <span class="pagination">
+      <span>
+        <%= link_to "Усі транзакції", all_operations_path, class: "btn btn-secondary", id: "all_operations" %>
+      </span>
+    <div class="pagination">
       <%= paginate @operations %>
-    </span>
+    </div>
   </div>
 </div>

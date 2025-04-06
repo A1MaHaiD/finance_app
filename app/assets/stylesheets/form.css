@@ -1,0 +1,33 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#backgroung {
+    background-color: #e9efed;
+    width: 550px;
+    border-radius: 15px;
+    padding: 16px;
+}
+
+.align-items-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 0;
+}
+
+#name, #description {
+    margin: 16px;
+}
+
+.form-label {
+    margin-right: 16px;
+}
+
+#button-form {
+    margin: 16px;
+    width: 100px;
+}

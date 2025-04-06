@@ -1,15 +1,4 @@
-<style type="text/css">
-    .form-label {
-        margin-right: 16px;
-    }
-
-    #name, #description {
-        margin: 16px;
-    }
-    .btn-primary {
-        width: 100px;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/form.css">
 <%= form_with(model: category) do |form| %>
   <% if category.errors.any? %>
     <div style="color: red">
@@ -36,7 +25,7 @@
   </div>
 
   <div id="create">
-    <span><%= form.submit class: "btn btn-success", value: "Зберегти" %></span>
-    <span><%= link_to "Назад", categories_path, class: "btn btn-primary" %></span>
+    <span><%= form.submit class: "btn btn-success", value: "Зберегти", id: "button-form" %></span>
+    <span><%= link_to "Назад", categories_path, class: "btn btn-primary", id: "button-form"%></span>
   </div>
 <% end %>
