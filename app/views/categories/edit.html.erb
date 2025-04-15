@@ -1,5 +1,10 @@
-<% content_for :title, "Editing category" %>
-
+<link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/form.css">
 <h1>Редагування інформації про категорію доходів / витрат</h1>
+<div class="container">
+  <div id="backgroung">
+    <% content_for :title, "Editing category" %>
 
-<%= render "form", category: @category %>
+
+    <%= render "form", category: @category %>
+  </div>
+</div>

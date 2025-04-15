@@ -1,43 +1,14 @@
+<link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/form.css">
 <h1>Генератор звітів</h1>
-<style type="text/css">
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .align-items-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 8px 0;
-    }
-
-    .reports {
-        margin: 16px 36px;
-        color: black;
-        text-decoration: none;
-    }
-
-    #category_graph, #dates_graph {
-        margin: 16px 16px;
-    }
-
-    #report_form {
-        background-color: #e9efed;
-        width: 550px;
-        border-radius: 15px;
-    }
-</style>
 <script>
     function submitForm(action) {
-        var form = document.getElementById('report_form');
+        var form = document.getElementById('backgroung');
         form.action = action;
         form.submit();
     }
 </script>
 <div class="container">
-  <form id="report_form" name="generate_report" method="GET">
+  <form id="backgroung" name="generate_report" method="GET">
     <div class="row g-3 align-items-center">
       <div class="col-auto">
         <label for="start_date" class="col-form-label">Дата DD-MM-YYYY</label>
@@ -70,15 +41,14 @@
         <label for="category" class="col-form-label">Категорії</label>
       </div>
       <div class="col-auto">
-        <!--      TODO:()  -->
         <% unless @categories.nil? %>
-          <%= select(:operation, :category, options_for_select(@categories), {}, { name: "category" }) %>
-        <% else %>
+          <%= select_tag :category, options_for_select(@categories.map { |name, id, _| [name, id] }, selected: params[:category]), class: "form-control" %>
+      <% else %>
           <p>Немає доступних категорій</p>
         <% end %>
       </div>
     </div>
-    <input id="category_graph" type="submit" class="btn btn-success" value="Графік" onclick="submitForm('/reports/report_by_category')">
-    <input id="dates_graph" type="submit" class="btn btn-danger" value="По датам" onclick="submitForm('/reports/report_by_dates')">
+    <input id="button-form" type="submit" class="btn btn-success" value="Графік" onclick="submitForm('/reports/report_by_category')">
+    <input id="button-form" type="submit" class="btn btn-danger" value="По датам" onclick="submitForm('/reports/report_by_dates')">
   </form>
 </div>

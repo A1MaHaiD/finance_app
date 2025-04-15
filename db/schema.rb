@@ -10,23 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_15_101041) do
-  create_table "categories", force: :cascade do |t|
+ActiveRecord::Schema[8.0].define(version: 2025_03_25_153646) do
+  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id", "name"], name: "index_categories_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "operations", force: :cascade do |t|
-    t.decimal "amount"
+  create_table "operations", charset: "utf8mb3", force: :cascade do |t|
+    t.decimal "amount", precision: 10
     t.string "operation_type"
     t.datetime "odate"
     t.string "description"
-    t.bigint "category_id"
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_operations_on_category_id"
+  end
+
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "operations", "categories"

@@ -1,5 +1,8 @@
-<h1 style="margin: 36px 0px">Звіт по витратах в розрізі категорії:</h1>
-<h4>Розподіл витрат за період</h4>
+<h1 style="margin: 36px 0px" xmlns="http://www.w3.org/1999/html">Звіт <%= params[:operation_type] == 'Витрати' ? 'по витратах' : 'по доходах' %>
+  в розрізі категорії:</h1>
+<h4>Розподіл <%= params[:operation_type] == 'Витрати' ? 'витрат' : 'доходів' %> за період:
+  <strong style="color: #8546bc"> <%= Date.parse(params[:start_date]).strftime("%d-%m-%Y") %></strong> -
+  <strong style="color: #8546bc"> <%= Date.parse(params[:end_date]).strftime("%d-%m-%Y") %></h4> </strong>
 <div style="display: flex; justify-content: center;">
   <canvas id="reportCategoryChart" width="1800" height="700"></canvas>
 </div>

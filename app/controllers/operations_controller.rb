@@ -1,4 +1,8 @@
 class OperationsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource :category, find_by: :id
+  load_and_authorize_resource :operation, through: :category, shallow: true
+
   before_action :get_category, except: %i[all_operations]
   before_action :set_operation, only: %i[show edit update destroy]
   before_action :set_categories, only: %i[new edit create update]
@@ -10,8 +14,8 @@ class OperationsController < ApplicationController
 
   # GET /all_operations
   def all_operations
-    @operations = Operation.page(params[:page])
-    @category = Category.first # Задаємо значення @category для використання в представленні
+    @operations = current_user.operations.page(params[:page])
+    @category = current_user.categories.first # Задаємо значення @category для використання в представленні
   end
 
   # GET /operations/1 or /operations/1.json
@@ -29,8 +33,10 @@ class OperationsController < ApplicationController
 
   # POST /operations or /operations.json
   def create
+    logger.debug "Параметри операції: #{operation_params.inspect}"
+    logger.debug "Категорії користувача: #{current_user.categories.pluck(:id)}"
     @operation = @category.operations.build(operation_params)
-    @operation.category_id = params[:operation][:category_id]
+    # @operation.category_id = current_user.categories.find(params[:operation][:category_id])
 
     respond_to do |format|
       if @operation.save
@@ -68,18 +74,21 @@ class OperationsController < ApplicationController
   private
 
   def get_category
-    @category = Category.find(params[:category_id])
+    @category = current_user.categories.find(params[:category_id])
+    unless @category
+      redirect_to categories_path, alert: "Категорія не знайдена або ви не маєте доступу."
+    end
   end
 
   def set_operation
     @operation = @category.operations.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "Транзакція не знайдена."
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:alert] = e.message == "Couldn't find Operation" ? "Транзакція не знайдена." : "Ви не маєте доступу до цієї операції."
     redirect_to category_operations_path(@category)
   end
 
   def set_categories
-    @categories = Category.all.map { |c| [c.name, c.id] }
+    @categories = current_user.categories.all.map { |c| [ c.name, c.id ] }
   end
 
   def operation_params

@@ -1,9 +1,12 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   before_action :set_category, only: %i[show edit update destroy]
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.page(params[:page])
+    @categories = current_user.categories.page(params[:page])
   end
 
   # GET /categories/1 or /categories/1.json
@@ -21,7 +24,7 @@ class CategoriesController < ApplicationController
 
   # POST /categories or /categories.json
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
 
     respond_to do |format|
       if @category.save
@@ -63,10 +66,12 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to categories_path, alert: "Ви не маєте доступу до цієї категорії."
   end
 
   def category_params
-    params.require(:category).permit(:name, :description)
+    params.require(:category).permit(:name, :description, :user_id)
   end
 end

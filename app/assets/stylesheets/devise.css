@@ -1,0 +1,21 @@
+h2 {
+    font-size: 48px;
+
+}
+
+.field {
+    font: normal 24px sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    background-color: #e9efed;
+    width: 550px;
+    border-radius: 15px;
+    padding: 16px;
+}
