@@ -3,32 +3,62 @@
   <div class="card">
     <h2>Реєстрація</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br/>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign up", class:"btn btn-primary" %>
+    <% if resource.errors.any? %>
+      <div class="error-message">
+        <span class="error-icon">&#9888;</span>
+        <div class="error-text">Підтвердіть пароль</div>
       </div>
     <% end %>
 
-    <%= render "devise/shared/links" %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.label :email, "Електронна пошта" %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Електронна пошта" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Очікується підтвердження: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password, "Пароль" %><br/>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Пароль" %>
+        <% if @minimum_password_length %>
+          <br/>
+          <em id="password-hint">мінімум <%= @minimum_password_length %> символів</em>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "Підтвердження пароля"%><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Підтвердьте пароль" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Зареєструватися", class:"btn btn-primary button-form" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links"%>
   </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var passwordField = document.querySelector('input[name="user[password]"]');
+        var hint = document.getElementById("password-hint");
+        if (passwordField && hint) {
+            passwordField.addEventListener("keyup", function () {
+                hint.style.display = this.value.length > 0 ? "block" : "none";
+            });
+            passwordField.addEventListener("focus", function () {
+                if (this.value.length > 0) {
+                    hint.style.display = "block";
+                }
+            });
+            passwordField.addEventListener("blur", function () {
+                hint.style.display = "none";
+            });
+        }
+    });
+</script>

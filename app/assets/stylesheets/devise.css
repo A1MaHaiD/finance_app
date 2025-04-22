@@ -1,6 +1,22 @@
+input::placeholder {
+    text-align: center;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+::-moz-placeholder {
+    text-align: center;
+}
+:-ms-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder {
+    text-align: center;
+}
 h2 {
     font-size: 48px;
-
 }
 
 .field {
@@ -18,4 +34,40 @@ h2 {
     width: 550px;
     border-radius: 15px;
     padding: 16px;
+}
+
+.error-icon {
+    font-size: 36px;
+    margin-right: 10px;
+}
+.error-message {
+    background-color: #ffdddd;
+    border-left: 6px solid #ff5c5c;
+    padding: 10px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #b30000;
+    display: flex;
+    align-items: center;
+}
+
+#password-hint {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+    display: none;
+    margin: 10px auto 0 auto;
+    font-size: 18px;
+    text-align: center;
+    width: 60%;
+}
+
+.button-form {
+    margin: 16px;
+    width: 150px;
+}
+.delete-account {
+    margin-top: 20px;
+    text-align: center;
 }
