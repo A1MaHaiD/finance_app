@@ -19,7 +19,7 @@ development:
   encoding: utf8
   database: finance_app_db
   username: finance_user
-  password: c_2h13_W
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   port: 3306
 
 # Warning: The database defined as "test" will be erased and
