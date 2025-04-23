@@ -65,6 +65,8 @@ group :development, :test do
 end
 
 group :development do
+  # When mail is sent from your application, Letter Opener will open a preview in the browser instead of sending.
+    gem 'letter_opener', '~> 1.10'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem 'mysql2', '~> 0.5.6'
