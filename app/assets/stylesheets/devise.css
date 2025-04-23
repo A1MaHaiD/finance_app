@@ -67,6 +67,10 @@ h2 {
     margin: 16px;
     width: 150px;
 }
+
+.button-reset-pass {
+    margin: 16px;
+}
 .delete-account {
     margin-top: 20px;
     text-align: center;

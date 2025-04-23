@@ -3,16 +3,23 @@
   <div class="card">
     <h2>Відновлення паролю</h2>
 
+    <% if resource.errors.any? %>
+      <div class="error-message">
+        <span class="error-icon">&#9888;</span>
+        <div class="error-text">Введіть вашу електронну пошту</div>
+      </div>
+    <% end %>
+
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.label :email, "Електронна пошта" %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Введіть пошту" %>
       </div>
 
       <div class="actions">
-        <%= f.submit "Send me reset password instructions", class:"btn btn-secondary" %>
+        <%= f.submit "Відправити запит скидання пароля", class:"btn btn-primary button-reset-pass" %>
       </div>
     <% end %>
 

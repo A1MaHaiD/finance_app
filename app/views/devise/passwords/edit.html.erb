@@ -1,30 +1,55 @@
 <link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/devise.css">
 <div class="container">
   <div class="card">
-    <h2>Change your password</h2>
+    <h2>Зміна паролю</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <%= f.hidden_field :reset_password_token %>
 
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Очікується підтвердження: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
       <div class="field">
-        <%= f.label :password, "New password" %><br/>
+        <%= f.label :password, "Пароль" %><br/>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Новий пароль" %>
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
+          <br/>
+          <em id="password-hint">мінімум <%= @minimum_password_length %> символів</em>
         <% end %>
-        <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation, "Confirm new password" %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.label :password_confirmation, "Підтвердження пароля" %><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Підтвердьте пароль" %>
       </div>
 
       <div class="actions">
-        <%= f.submit "Change my password", class:"btn btn-secondary" %>
+        <%= f.submit "Змінити пароль", class:"btn btn-success button-reset-pass" %>
       </div>
     <% end %>
 
     <%= render "devise/shared/links" %>
   </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var passwordField = document.querySelector('input[name="user[password]"]');
+        var hint = document.getElementById("password-hint");
+        if (passwordField && hint) {
+            passwordField.addEventListener("keyup", function () {
+                hint.style.display = this.value.length > 0 ? "block" : "none";
+            });
+            passwordField.addEventListener("focus", function () {
+                if (this.value.length > 0) {
+                    hint.style.display = "block";
+                }
+            });
+            passwordField.addEventListener("blur", function () {
+                hint.style.display = "none";
+            });
+        }
+    });
+</script>
