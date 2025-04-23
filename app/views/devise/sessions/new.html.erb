@@ -5,24 +5,24 @@
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.label :email, "Електрона пошта" %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Електронна пошта" %>
       </div>
 
       <div class="field">
-        <%= f.label :password %><br/>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.label :password, "Пароль" %><br/>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Пароль" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
         <div class="field">
           <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+          <%= f.label :remember_me, "Запам'ятати мене" %>
         </div>
       <% end %>
 
       <div class="actions">
-        <%= f.submit "Log in", class:"btn btn-primary" %>
+        <%= f.submit "Увійти", class:"btn btn-primary button-form" %>
       </div>
     <% end %>
 
