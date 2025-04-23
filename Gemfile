@@ -68,6 +68,8 @@ group :development do
   # When mail is sent from your application, Letter Opener will open a preview in the browser instead of sending.
     gem 'letter_opener', '~> 1.10'
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  # Loads environment variables from `.env`.
+  gem 'dotenv', '~> 3.1', '>= 3.1.8'
   gem "web-console"
   gem 'mysql2', '~> 0.5.6'
 end
@@ -75,6 +77,8 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   # Add gem ActiveSupport
+  # Loads environment variables from `.env`.
+  gem 'dotenv', '~> 3.1', '>= 3.1.8'
   gem "activesupport"
   gem "capybara"
   gem "selenium-webdriver"
