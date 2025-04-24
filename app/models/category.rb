@@ -5,7 +5,7 @@ class Category < ApplicationRecord
   paginates_per 10
   validates :name, presence: true, uniqueness: {
     scope: :user_id,
-    message: "Назва повинна бути унікальною в межах вашого облікового запису"
+    message: "name must be unique within your account"
   }
   validates :description, presence: true
 

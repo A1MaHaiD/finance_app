@@ -55,7 +55,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       user: user)
     assert_not duplicate_category.valid?
     assert_includes duplicate_category.errors[:name],
-                    "Назва повинна бути унікальною в межах вашого облікового запису"
+                    "name must be unique within your account"
   end
 
   test "should list created category" do
