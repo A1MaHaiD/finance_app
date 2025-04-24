@@ -3,16 +3,19 @@
 cat_1:
   name: 1st_Category
   description: 1st_description
+  user: user_one
   # Given
 cat_2:
   name: 2nd_Category
   description: 2nd_description
+  user: user_two
   # Given
 cat_5:
   name: 5th Category
   description: 5th description
+  user: user_one
   # Given
 cat_6:
   name: 6th Category
   description: 6th description
-
+  user: user_two

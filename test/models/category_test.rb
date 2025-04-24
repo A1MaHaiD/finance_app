@@ -2,8 +2,6 @@ require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
 
-  # Category :name
-
   test "check the '1s_Category' from database" do
     # When
     category_first = Category.find_by(name: "1st_Category")
