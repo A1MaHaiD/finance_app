@@ -1,10 +1,12 @@
 require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   setup do
+    @user = users(:user_one)
+    sign_in @user
     @category = categories(:cat_1)
   end
-
   test "should get index" do
     get categories_url
     assert_response :success
@@ -17,10 +19,55 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create category" do
     assert_difference("Category.count", 1) do
-      post categories_url, params: { category: { description: "New Description", name: "New Category" } }
+      post categories_url, params: {
+        category: {
+          name: "New Category",
+          description: "New Description",
+          user_id: users(:user_one).id
+        }
+      }
     end
-
     assert_redirected_to category_url(Category.last)
+  end
+
+  test "should not create category with missing name" do
+    assert_no_difference("Category.count") do
+      post categories_url, params: {
+        category: {
+          description: "No name provided",
+          user_id: users(:user_one).id
+        }
+      }
+    end
+    assert_response :unprocessable_entity
+  end
+
+  test "should not create duplicate category name for same user" do
+    user = users(:user_one)
+    Category.create!(
+      name: "Duplicate",
+      description: "Some description",
+      user: user)
+
+    duplicate_category = Category.new(
+      name: "Duplicate",
+      description: "Another description",
+      user: user)
+    assert_not duplicate_category.valid?
+    assert_includes duplicate_category.errors[:name],
+                    "Назва повинна бути унікальною в межах вашого облікового запису"
+  end
+
+  test "should list created category" do
+    get categories_url
+    assert_response :success
+    assert_select "h1", text: "Категорії витрат / доходів"
+  end
+
+  test "visiting the index" do
+    get categories_url
+    assert_response :success
+    assert_select "h1", text: "Категорії витрат / доходів"
   end
 
   test "should show category" do
@@ -34,7 +81,12 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update category" do
-    patch category_url(@category), params: { category: { description: @category.description, name: @category.name } }
+    patch category_url(@category), params: {
+      category: {
+        description: @category.description,
+        name: @category.name
+      }
+    }
     assert_redirected_to category_url(@category)
   end
 

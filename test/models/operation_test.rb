@@ -2,8 +2,10 @@ require "test_helper"
 
 class OperationTest < ActiveSupport::TestCase
   # Given
-  category_sixth = Category.find_by(name: "6th Category")
-  category_first = Category.find_by(name: "1st_Category")
+  def setup
+    @category_sixth = categories(:cat_6)
+    @category_first = categories(:cat_1)
+  end
 
   test "return true if everything is good" do
     # When
@@ -12,9 +14,9 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: "Доходи",
       odate: Date.today,
       description: "Якийсь опис",
-      category: category_sixth)
+      category: @category_sixth)
     # Then
-    assert(operation_new.valid?)
+    assert operation_new.valid?
   end
 
   # Operation :amount
@@ -25,7 +27,7 @@ class OperationTest < ActiveSupport::TestCase
     # When
     operation_find_amount = Operation.find_by(amount: amount_from_db)
     # Then
-    assert_equal(9.99, operation_find_amount.amount)
+    assert_equal 9.99, operation_find_amount.amount
   end
 
   test "return false if amount is missed" do
@@ -34,37 +36,36 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: "Витрати",
       odate: Date.today,
       description: "Суму не ввели",
-      category: category_sixth)
+      category: @category_sixth)
     # Then
     assert_not(operation_new.valid?)
   end
 
   test "return false if amount is nil" do
-    # When
     operation_new = Operation.new(
       amount: nil,
       operation_type: "Доходи",
       odate: Date.today,
       description: "Значення nil для суми",
-      category: category_sixth
+      category: @category_sixth
     )
-    # Then
     assert_not operation_new.save, "Операція була збережена, незважаючи на nil значення для amount"
     assert_includes operation_new.errors[:amount], "can't be blank"
   end
 
-  test "check the minus validation input" do
+  test "should not save operation with negative amount" do
     # When
     operation = Operation.new(
       amount: -1,
       operation_type: "Доходи",
       odate: Date.today,
       description: "Вартість нижче нуля",
-      category: category_sixth
+      category: @category_sixth
     )
     # Then
     assert_not operation.save, "Операція була збережена, незважаючи на ввід '-1'"
-    assert_includes operation.errors[:amount], "must be greater than 0", "Помилка валідації amount відсутня"
+    assert_includes operation.errors[:amount], "must be greater than 0",
+                    "Помилка валідації amount відсутня"
   end
 
   test "check the zero validation input" do
@@ -74,11 +75,12 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: "Доходи",
       odate: Date.today,
       description: "Вартість рівна нулю",
-      category: category_sixth
+      category: @category_sixth
     )
     # Then
     assert_not operation.save, "Операція була збережена, незважаючи на ввід '0'"
-    assert_includes operation.errors[:amount], "must be greater than 0", "Помилка валідації amount відсутня"
+    assert_includes operation.errors[:amount], "must be greater than 0",
+                    "Помилка валідації amount відсутня"
   end
 
   # Operation :operation_type
@@ -88,7 +90,7 @@ class OperationTest < ActiveSupport::TestCase
     # When
     operation_find_op = Operation.find_by(operation_type: ot_from_db)
     # Then
-    assert_equal("Витрати", operation_find_op.operation_type)
+    assert_equal "Витрати", operation_find_op.operation_type
   end
 
   test "return false if operation_type is missed" do
@@ -97,9 +99,9 @@ class OperationTest < ActiveSupport::TestCase
       amount: 1,
       odate: Date.today,
       description: "Не введено тип операції",
-      category: category_sixth)
+      category: @category_sixth)
     # Then
-    assert_not(operation_new.valid?)
+    assert_not operation_new.valid?
   end
 
   test "return false if operation_type is nil" do
@@ -109,7 +111,7 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: nil,
       odate: Date.today,
       description: "Значення nil для типу операції",
-      category: category_sixth
+      category: @category_sixth
     )
     # Then
     assert_not operation_new.save, "Операція була збережена, незважаючи на nil значення для operation_type"
@@ -132,9 +134,9 @@ class OperationTest < ActiveSupport::TestCase
       amount: 1,
       operation_type: "Доходи",
       description: "Забули ввести дату",
-      category: category_sixth)
+      category: @category_sixth)
     # Then
-    assert_not(operation_new.valid?)
+    assert_not operation_new.valid?
   end
 
   test "return false if odate is nil" do
@@ -144,7 +146,7 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: "Доходи",
       odate: nil,
       description: "Значення дати nil для операції",
-      category: category_sixth
+      category: @category_sixth
     )
     # Then
     assert_not operation_new.save, "Операція була збережена, незважаючи на nil значення для odate"
@@ -167,9 +169,9 @@ class OperationTest < ActiveSupport::TestCase
       amount: 1,
       operation_type: "Доходи",
       odate: Date.today,
-      category: category_sixth)
+      category: @category_sixth)
     # Then
-    assert_not(operation_new.valid?)
+    assert_not operation_new.valid?
   end
 
   test "return false if description is nil" do
@@ -179,7 +181,7 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: "Доходи",
       odate: Date.today,
       description: nil,
-      category: category_sixth
+      category: @category_sixth
     )
     # Then
     assert_not operation_new.save, "Операція була збережена, незважаючи на nil значення для description"
@@ -205,25 +207,33 @@ class OperationTest < ActiveSupport::TestCase
       operation_type: "Витрати",
       odate: Date.today,
       description: "Витрати за надані послуги",
-      category: category_first
+      category: @category_first
     )
     assert operation.save, "Операція не була збережена з категорією"
   end
 
+  test "should update operation description" do
+    operation = operations(:op_1)
+    new_description = "Оновлений опис"
+    assert operation.update(description: new_description)
+    assert_equal new_description, operation.reload.description
+  end
+
   test "should delete operation when category is deleted" do
-    category_second = Category.create(
+    category_temp = Category.create(
       name: "Temp_Category",
-      description: "Тимчасова категорія"
+      description: "Тимчасова категорія",
+      user: users(:user_one)
     )
     operation = Operation.create(
       amount: 9.99,
       operation_type: "Витрати",
       odate: Date.today,
       description: "Витрати за надані послуги",
-      category: category_second
+      category: category_temp
     )
     assert_difference "Operation.count", -1 do
-      category_second.destroy_with_operations
+      category_temp.destroy_with_operations
     end
   end
 end
