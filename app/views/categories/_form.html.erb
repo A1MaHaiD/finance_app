@@ -15,17 +15,19 @@
   <div id="name">
     <label class="form-label">Назва категорії
     </label>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, id: "category_name" %>
   </div>
 
   <div id="description">
     <label class="form-label">Короткий опис
     </label>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, id: "category_description" %>
   </div>
 
   <div id="create">
-    <span><%= form.submit class: "btn btn-success", value: "Зберегти", id: "button-form" %></span>
-    <span><%= link_to "Назад", categories_path, class: "btn btn-primary", id: "button-form"%></span>
+    <span><%= form.submit class: "btn btn-success", value: "Зберегти",
+                          id: "button-form", data: { test: "save-category" } %></span>
+    <span><%= link_to "Назад", categories_path, class: "btn btn-primary",
+                      id: "button-form", data: { test: "back-to-categories" } %></span>
   </div>
 <% end %>

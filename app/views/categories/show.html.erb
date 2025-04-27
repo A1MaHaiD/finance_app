@@ -77,11 +77,11 @@
       </thead>
       <tbody>
       <tr>
-        <td>Назва</td>
+        <td>Назва категорії</td>
         <td><%= @category.name %></td>
       </tr>
       <tr>
-        <td>Опис</td>
+        <td>Короткий опис</td>
         <td><%= @category.description %></td>
       </tr>
       </tbody>
@@ -89,13 +89,14 @@
   </div>
 
   <div class="interaction">
-    <%= link_to edit_category_path(@category), class: "btn btn-link" do %>
+    <%= link_to edit_category_path(@category), class: "btn btn-link", data: { test: "edit-category" }  do %>
       <i class="bi bi-pencil-square"></i>
     <% end %>
-    <%= button_to @category, method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+    <%= button_to @category, method: :delete, class: "btn btn-link",
+                  data: { test: "destroy-category", confirm: "Are you sure?" } do %>
       <i class="bi bi-x-square"></i>
     <% end %>
-    <%= link_to categories_path, class: "btn btn-link" do %>
+    <%= link_to categories_path, class: "btn btn-link", data: { test: "back-to-categories" }  do %>
       <i class="bi bi-arrow-left-square-fill"></i>
     <% end %>
   </div>
