@@ -76,10 +76,11 @@
           <td><%= category.description %></td>
           <td>
             <div class="interaction">
-              <%= link_to edit_category_path(category), class: "btn btn-link" do %>
+              <%= link_to edit_category_path(category), class: "btn btn-link", data: { test: "edit-category" } do %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
-              <%= button_to category_path(category), method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+              <%= button_to category_path(category), method: :delete, class: "btn btn-link",
+                            data: { test: "destroy-category", confirm: "Are you sure?" } do %>
                 <i class="bi bi-x-square"></i>
               <% end %>
             </div>
@@ -91,7 +92,8 @@
   </div>
   <div>
     <span id="add_category">
-      <%= link_to "Додати нову категорію", new_category_path, class: "btn btn-primary" %>
+      <%= link_to "Додати нову категорію", new_category_path, class: "btn btn-primary",
+                  data: { test: "new-category" } %>
     </span>
     <span class="pagination">
       <%= paginate @categories %>

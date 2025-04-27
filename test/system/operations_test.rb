@@ -1,17 +1,22 @@
 require "application_system_test_case"
 
 class OperationsTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @operation = operations(:one)
+    @user = users(:user_one)
+    sign_in @user
+    @category = categories(:cat_1)
+    @operation = operations(:op_1)
   end
 
   test "visiting the index" do
-    visit operations_url
+    visit category_operations_url
     assert_selector "h1", text: "Operations"
   end
 
   test "should create operation" do
-    visit operations_url
+    visit category_operations_url
     click_on "New operation"
 
     fill_in "Amount", with: @operation.amount
@@ -26,7 +31,7 @@ class OperationsTest < ApplicationSystemTestCase
   end
 
   test "should update Operation" do
-    visit operation_url(@operation)
+    visit category_operations_url(@operation)
     click_on "Edit this operation", match: :first
 
     fill_in "Amount", with: @operation.amount
@@ -41,7 +46,7 @@ class OperationsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Operation" do
-    visit operation_url(@operation)
+    visit category_operations_url(@operation)
     click_on "Destroy this operation", match: :first
 
     assert_text "Operation was successfully destroyed"
