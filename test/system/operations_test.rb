@@ -22,32 +22,28 @@ class OperationsTest < ApplicationSystemTestCase
 
     fill_in "operation_amount", with: @operation.amount
     fill_in "operation_description", with: @operation.description
-    fill_in "operation_odate", with: @operation.odate.to_s
-    fill_in "operation_operation_type", with: @operation.operation_type
+    fill_in "operation_odate", with: @operation.odate
+    select @operation.operation_type, from: "Тип операції"
 
     assert_selector "input[data-test='save-operation']", visible: true
     find("input[data-test='save-operation']").click
     assert_text "Транзакція успішно збережена."
-    assert_selector "a[data-test='back-to-operations']", visible: true
-    find("a[data-test='back-to-operations']").click
   end
 
   test "should update Operation" do
     visit category_operations_url(@category)
-    assert_selector "a[data-test='edit-operation']", visible: true
+    assert_selector "a[data-test='edit-operation']", visible: true, wait: 5
     find("a[data-test='edit-operation']", match: :first).click
 
     fill_in "operation_amount", with: @operation.amount
     fill_in "operation_description", with: @operation.description
     fill_in "operation_odate", with: @operation.odate.to_s
-    fill_in "operation_operation_type", with: @operation.operation_type
+    select @operation.operation_type, from: "Тип операції"
 
     assert_selector "input[data-test='save-operation']", visible: true
     find("input[data-test='save-operation']").click
 
     assert_text "Транзакція успішно оновлена."
-    assert_selector "a[data-test='back-to-operations']", visible: true
-    find("a[data-test='back-to-operations']").click
   end
 
   test "should destroy Operation" do

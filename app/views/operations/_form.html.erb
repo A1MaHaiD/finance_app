@@ -45,27 +45,22 @@
       <% end %>
 
       <div class="fields-layout">
-        <!--        <label class="form-label">Сума</label>-->
-        <%= form.label :amount %>
+        <%= form.label :amount, "Сума", class: "form-label" %>
         <%= form.text_field :amount %>
       </div>
 
       <div class="fields-layout">
-        <!--        <label class="form-label">Тип операції</label>-->
-        <%= form.label :operation_type, "Тип операції" %>
-        <%= form.select :operation_type,
-                        options_for_select(["Витрати", "Доходи"], id: "operation_operation_type") %>
+        <%= form.label :operation_type, "Тип операції", class: "form-label" %>
+        <%= form.select :operation_type, options_for_select(["Витрати", "Доходи"]), id: "operation_operation_type" %>
       </div>
 
       <div class="fields-layout">
-        <!--        <label class="form-label">Дата транзакції</label>-->
-        <%= form.label :odate, "Дата транзакції" %>
+        <%= form.label :odate, "Дата транзакції", class: "form-label" %>
         <%= form.datetime_field :odate, id: "operation_odate" %>
       </div>
 
       <div class="fields-layout">
-        <!--        <label class="form-label">Короткий опис</label>-->
-        <%= form.label :description, "Короткий опис" %>
+        <%= form.label :description, "Короткий опис", class: "form-label" %>
         <%= form.text_field :description, id: "operation_description" %>
       </div>
 
