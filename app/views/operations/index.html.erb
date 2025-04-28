@@ -87,11 +87,12 @@
           <td><%= operation.description %></td>
           <td>
             <div class="interaction">
-              <%= link_to edit_category_operation_path(@category, operation), class: "btn btn-link" do %>
+              <%= link_to edit_category_operation_path(@category, operation), class: "btn btn-link",
+                          data: { test: "edit-operation" } do %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
               <%= button_to category_operation_path(@category, operation), method: :delete, class: "btn btn-link",
-                            data: { confirm: "Are you sure?" } do %>
+                            data: { test: "destroy-operation", confirm: "Are you sure?" } do %>
                 <i class="bi bi-x-square"></i>
               <% end %>
             </div>
@@ -104,11 +105,12 @@
   </div>
   <div style="margin-top: 16px;">
     <span>
-      <%= link_to "Додати нову операцію", new_category_operation_path(@category), class: "btn btn-primary", id: "add_operation"  %>
+      <%= link_to "Додати нову операцію", new_category_operation_path(@category),
+                  class: "btn btn-primary", id: "add_operation", data: { test: "new-operation" } %>
     </span>
-      <span>
-        <%= link_to "Усі транзакції", all_operations_path, class: "btn btn-secondary", id: "all_operations" %>
-      </span>
+    <span>
+      <%= link_to "Усі транзакції", all_operations_path, class: "btn btn-secondary", id: "all_operations"%>
+    </span>
     <div class="pagination">
       <%= paginate @operations %>
     </div>

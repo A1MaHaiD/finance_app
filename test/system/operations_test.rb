@@ -11,44 +11,50 @@ class OperationsTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
-    visit category_operations_url
-    assert_selector "h1", text: "Operations"
+    visit category_operations_url(@category)
+    assert_selector "h1", text: "Транзакції"
   end
 
   test "should create operation" do
-    visit category_operations_url
-    click_on "New operation"
+    visit category_operations_url(@category)
+    assert_selector "a[data-test='new-operation']", visible: true
+    find("a[data-test='new-operation']").click
 
-    fill_in "Amount", with: @operation.amount
-    fill_in "Category", with: @operation.category_id
-    fill_in "Description", with: @operation.description
-    fill_in "Odate", with: @operation.odate
-    fill_in "Operation type", with: @operation.operation_type
-    click_on "Create Operation"
+    fill_in "operation_amount", with: @operation.amount
+    fill_in "operation_description", with: @operation.description
+    fill_in "operation_odate", with: @operation.odate.to_s
+    fill_in "operation_operation_type", with: @operation.operation_type
 
-    assert_text "Operation was successfully created"
-    click_on "Back"
+    assert_selector "input[data-test='save-operation']", visible: true
+    find("input[data-test='save-operation']").click
+    assert_text "Транзакція успішно збережена."
+    assert_selector "a[data-test='back-to-operations']", visible: true
+    find("a[data-test='back-to-operations']").click
   end
 
   test "should update Operation" do
-    visit category_operations_url(@operation)
-    click_on "Edit this operation", match: :first
+    visit category_operations_url(@category)
+    assert_selector "a[data-test='edit-operation']", visible: true
+    find("a[data-test='edit-operation']", match: :first).click
 
-    fill_in "Amount", with: @operation.amount
-    fill_in "Category", with: @operation.category_id
-    fill_in "Description", with: @operation.description
-    fill_in "Odate", with: @operation.odate.to_s
-    fill_in "Operation type", with: @operation.operation_type
-    click_on "Update Operation"
+    fill_in "operation_amount", with: @operation.amount
+    fill_in "operation_description", with: @operation.description
+    fill_in "operation_odate", with: @operation.odate.to_s
+    fill_in "operation_operation_type", with: @operation.operation_type
 
-    assert_text "Operation was successfully updated"
-    click_on "Back"
+    assert_selector "input[data-test='save-operation']", visible: true
+    find("input[data-test='save-operation']").click
+
+    assert_text "Транзакція успішно оновлена."
+    assert_selector "a[data-test='back-to-operations']", visible: true
+    find("a[data-test='back-to-operations']").click
   end
 
   test "should destroy Operation" do
-    visit category_operations_url(@operation)
-    click_on "Destroy this operation", match: :first
+    visit category_operations_url(@category)
+    assert_selector "button[data-test='destroy-operation']", visible: true
+    find("button[data-test='destroy-operation']").click
 
-    assert_text "Operation was successfully destroyed"
+    assert_text "Транзакція успішно видалена."
   end
 end

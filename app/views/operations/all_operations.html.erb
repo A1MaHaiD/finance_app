@@ -80,10 +80,12 @@
           <td><%= operation.description %></td>
           <td>
             <div class="interaction">
-              <%= link_to edit_category_operation_path(operation.category, operation), class: "btn btn-link" do %>
+              <%= link_to edit_category_operation_path(operation.category, operation),
+                          class: "btn btn-link", data: { test: "edit-operation" } do %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
-              <%= button_to [operation.category, operation], method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+              <%= button_to [operation.category, operation], method: :delete, class: "btn btn-link",
+                            data: { test: "destroy-operation", confirm: "Are you sure?" } do %>
                 <i class="bi bi-x-square"></i>
               <% end %>
             </div>
@@ -95,7 +97,8 @@
   </div>
 
   <div id="add_operation">
-    <%= link_to "Додати нову операцію", new_category_operation_path(@category), class: "btn btn-primary" %>
+    <%= link_to "Додати нову операцію", new_category_operation_path(@category),
+                class: "btn btn-primary", data: { test: "new-operation'"} %>
   </div>
 
   <div class="pagination">

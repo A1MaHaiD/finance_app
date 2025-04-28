@@ -10,34 +10,42 @@
         border-radius: 4px;
         color: white;
     }
+
     .content {
         padding: 16px;
     }
+
     #notice {
         color: green;
     }
+
     .container-main {
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
     }
+
     .table {
         background-color: #e9efed;
         border-radius: 15px;
         width: 800px; /* Reduced width */
     }
+
     #add_operation, #view_all_operations {
         margin-top: 20px; /* Adjust positioning as needed */
     }
+
     .pagination {
         margin-top: 10px;
     }
+
     .interaction {
         display: flex;
         justify-content: center;
         gap: 10px;
     }
+
     .btn-link {
         padding: 0;
         display: flex;
@@ -46,18 +54,23 @@
         height: 48px;
         width: 48px;
     }
+
     .bi-pencil-square, .bi-x-square, .bi-arrow-left-square-fill {
         font-size: 36px;
     }
+
     .bi-pencil-square {
         color: orange;
     }
+
     .bi-arrow-left-square-fill {
         color: blue;
     }
+
     .bi-x-square {
         color: red;
     }
+
     .icon {
         display: inline-block;
         width: 128px;
@@ -69,9 +82,11 @@
         border-radius: 4px;
         color: white;
     }
+
     .content {
         padding: 16px;
     }
+
     td {
         padding: 8px 16px; /* Reduced padding */
     }
@@ -115,13 +130,16 @@
   </div>
 
   <div class="interaction">
-    <%= link_to edit_category_operation_path(@category, @operation), class: "btn btn-link" do %>
+    <%= link_to edit_category_operation_path(@category, @operation),
+                class: "btn btn-link", data: { test: "edit-operation" } do %>
       <i class="bi bi-pencil-square"></i>
     <% end %>
-    <%= button_to [@category, @operation], method: :delete, class: "btn btn-link", data: { confirm: "Are you sure?" } do %>
+    <%= button_to [@category, @operation], method: :delete, class: "btn btn-link",
+                  data: { test: "destroy-operation", confirm: "Are you sure?" } do %>
       <i class="bi bi-x-square"></i>
     <% end %>
-    <%= link_to category_operations_path(@category), class: "btn btn-link" do %>
+    <%= link_to category_operations_path(@category), class: "btn btn-link",
+                data: { test: "back-to-operations" } do %>
       <i class="bi bi-arrow-left-square-fill"></i>
     <% end %>
   </div>

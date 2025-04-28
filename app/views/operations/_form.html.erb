@@ -45,37 +45,40 @@
       <% end %>
 
       <div class="fields-layout">
-        <label class="form-label">Сума</label>
+        <!--        <label class="form-label">Сума</label>-->
+        <%= form.label :amount %>
         <%= form.text_field :amount %>
       </div>
 
       <div class="fields-layout">
-        <label class="form-label">Тип операції</label>
-        <%= form.select :operation_type, options_for_select(["Витрати", "Доходи"]) %>
+        <!--        <label class="form-label">Тип операції</label>-->
+        <%= form.label :operation_type, "Тип операції" %>
+        <%= form.select :operation_type,
+                        options_for_select(["Витрати", "Доходи"], id: "operation_operation_type") %>
       </div>
 
       <div class="fields-layout">
-        <label class="form-label">Дата транзакції</label>
-        <%= form.datetime_field :odate %>
+        <!--        <label class="form-label">Дата транзакції</label>-->
+        <%= form.label :odate, "Дата транзакції" %>
+        <%= form.datetime_field :odate, id: "operation_odate" %>
       </div>
 
       <div class="fields-layout">
-        <label class="form-label">Короткий опис</label>
-        <%= form.text_field :description %>
+        <!--        <label class="form-label">Короткий опис</label>-->
+        <%= form.label :description, "Короткий опис" %>
+        <%= form.text_field :description, id: "operation_description" %>
       </div>
 
       <div class="fields-layout">
-        <!--          <label class="form-label">Назва категорії</label>-->
-        <!--           <%= form.select :category_id, options_for_select(@categories, selected: @category.id) %> -->
         <label class="form-label">Категорія</label>
         <strong><%= @category.name %></strong>
         <%= form.hidden_field :category_id, value: @category.id %>
       </div>
 
       <div id="create">
-        <span><%= form.submit class: "btn btn-success", value: "Зберегти" %></span>
+        <span><%= form.submit class: "btn btn-success", value: "Зберегти", data: { test: "save-operation" } %></span>
         <span><%= link_to "Назад", category_operations_path(@category),
-                          class: "btn btn-primary", id: "button-form" %></span>
+                          class: "btn btn-primary", id: "button-form", data: { test: "back-to-operations" } %></span>
       </div>
     <% end %>
   </div>
