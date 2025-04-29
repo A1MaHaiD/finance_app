@@ -2,7 +2,11 @@ class MainController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    check_database_and_redirect
+    begin
+      check_database_and_redirect
+    rescue StandardError => e
+      redirect_to root_path, alert: "Виникла проблема: #{e.message}"
+    end
   end
 
   private
