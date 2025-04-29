@@ -4,6 +4,7 @@ require "rails/test_help"
 
 module ActiveSupport
   class TestCase
+    include Devise::Test::IntegrationHelpers
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
@@ -11,5 +12,10 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+  end
+  class ActionDispatch::IntegrationTest
+    include Warden::Test::Helpers
+    setup { Warden.test_mode! }
+    teardown { Warden.test_reset! }
   end
 end
