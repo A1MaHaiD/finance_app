@@ -2,8 +2,8 @@
 namespace :session do
   desc "Відправка DELETE запиту на вихід"
   task destroy: :environment do
-    require 'net/http'
-    require 'uri'
+    require "net/http"
+    require "uri"
 
     uri = URI("http://127.0.0.1:3000/users/sign_out")
     http = Net::HTTP.new(uri.host, uri.port)

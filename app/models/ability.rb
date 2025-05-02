@@ -7,10 +7,10 @@ class Ability
     return unless user.present?
 
     # Дозвіл для категорій, які належать користувачу
-    can [ :read, :manage], Category, user_id: user.id
+    can [ :read, :manage ], Category, user_id: user.id
 
     # Дозвіл для операцій, які належать категоріям користувача
-    can [ :read, :create, :manage], Operation, category: { user_id: user.id }
+    can [ :read, :create, :manage ], Operation, category: { user_id: user.id }
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?
