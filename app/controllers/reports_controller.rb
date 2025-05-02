@@ -12,9 +12,9 @@ class ReportsController < ApplicationController
     end
     # Логіка для формування звіту по категоріям
     @report_by_category = current_user.operations.joins(:category)
-                                      .where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
+                                      .where("odate BETWEEN ? AND ?", params[:start_date], params[:end_date])
                                       .where(operation_type: params[:operation_type])
-                                      .group('categories.name')
+                                      .group("categories.name")
                                       .sum(:amount)
     @names = @report_by_category.keys
     @sums = @report_by_category.values
@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
     end
     # Логіка для формування звіту по датам
     @report_by_dates = current_user.operations.joins(:category)
-                                   .where('odate BETWEEN ? AND ?', params[:start_date], params[:end_date])
+                                   .where("odate BETWEEN ? AND ?", params[:start_date], params[:end_date])
                                    .where(operation_type: params[:operation_type])
                                    .where(categories: { id: params[:category] })
                                    .group("odate")

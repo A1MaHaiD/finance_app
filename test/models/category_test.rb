@@ -1,7 +1,6 @@
 require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
-
   def setup
     @user = users(:user_one)
     @category_sixth = categories(:cat_6)
@@ -87,4 +86,3 @@ class CategoryTest < ActiveSupport::TestCase
                     "Відсутнє повідомлення для відсутності user"
   end
 end
-

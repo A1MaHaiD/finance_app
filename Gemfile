@@ -13,7 +13,7 @@ gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # This gem provides jQuery and the jQuery-ujs driver [https://rubygems.org/gems/jquery-rails]
-gem 'jquery-rails'
+gem "jquery-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
@@ -37,7 +37,7 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 
 # Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator for Rails 4+
-gem 'kaminari', '~> 1.2', '>= 1.2.2'
+gem "kaminari", "~> 1.2", ">= 1.2.2"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
@@ -45,12 +45,12 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 # Use Nokogiri variants [https://rubygems.org/gems/nokogiri]
-gem 'nokogiri', '~> 1.18', '>= 1.18.4'
+gem "nokogiri", "~> 1.18", ">= 1.18.4"
 
 # Use Devise variants for authentication [https://rubygems.org/gems/devise]
-gem 'devise', '~> 4.9', '>= 4.9.4'
+gem "devise", "~> 4.9", ">= 4.9.4"
 # Use cancancan variants for authorization []
-gem 'cancancan', '~> 3.6', '>= 3.6.1'
+gem "cancancan", "~> 3.6", ">= 3.6.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -60,25 +60,25 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem 'rubocop', require: false
+  gem "rubocop", require: false
   gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
-  # When mail is sent from your application, Letter Opener will open a preview in the browser instead of sending.
-    gem 'letter_opener', '~> 1.10'
+    # When mail is sent from your application, Letter Opener will open a preview in the browser instead of sending.
+    gem "letter_opener", "~> 1.10"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   # Loads environment variables from `.env`.
-  gem 'dotenv', '~> 3.1', '>= 3.1.8'
+  gem "dotenv", "~> 3.1", ">= 3.1.8"
   gem "web-console"
-  gem 'mysql2', '~> 0.5.6'
+  gem "mysql2", "~> 0.5.6"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   # Add gem ActiveSupport
   # Loads environment variables from `.env`.
-  gem 'dotenv', '~> 3.1', '>= 3.1.8'
+  gem "dotenv", "~> 3.1", ">= 3.1.8"
   gem "activesupport"
   gem "capybara"
   gem "selenium-webdriver"

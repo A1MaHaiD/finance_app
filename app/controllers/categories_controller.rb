@@ -57,7 +57,7 @@ class CategoriesController < ApplicationController
         format.html { redirect_to categories_path, status: :see_other, notice: "Категорія успішно видалена." }
         format.json { head :no_content }
       else
-        format.html { redirect_to @category, alert: @category.errors.full_messages.join('. ') }
+        format.html { redirect_to @category, alert: @category.errors.full_messages.join(". ") }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end

@@ -24,7 +24,6 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "report_by_category with valid dates returns success" do
-
     get reports_report_by_category_url, params: {
       start_date: @valid_start_date,
       end_date: @valid_end_date,
