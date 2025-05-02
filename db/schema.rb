@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_04_24_115433) do
-  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
@@ -21,7 +24,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_115433) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "operations", charset: "utf8mb3", force: :cascade do |t|
+  create_table "operations", force: :cascade do |t|
     t.decimal "amount", precision: 10, scale: 2
     t.string "operation_type"
     t.datetime "odate"
@@ -32,7 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_115433) do
     t.index ["category_id"], name: "index_operations_on_category_id"
   end
 
-  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
