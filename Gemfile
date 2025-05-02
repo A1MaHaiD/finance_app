@@ -71,7 +71,8 @@ group :development do
   # Loads environment variables from `.env`.
   gem "dotenv", "~> 3.1", ">= 3.1.8"
   gem "web-console"
-  gem "mysql2", "~> 0.5.6"
+  gem "pg", "~> 1.5", ">= 1.5.9"
+  # gem "mysql2", "~> 0.5.6"
 end
 
 group :test do

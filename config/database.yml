@@ -15,12 +15,20 @@ development:
 #  database: storage/development.sqlite3
 
 # For MySql2 database
-  adapter: mysql2
+#  adapter: mysql2
+#  encoding: utf8
+#  database: finance_app_db
+#  username: finance_user
+#  password: <%#= ENV["DATABASE_PASSWORD"] %>
+#  port: 3306
+
+# For PostgreSQL database
+  adapter: postgresql
   encoding: utf8
-  database: finance_app_db
   username: finance_user
+  database: finance_app_db
   password: <%= ENV["DATABASE_PASSWORD"] %>
-  port: 3306
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

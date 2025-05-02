@@ -94,8 +94,7 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.5, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.25.5, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.8.0, rbenv: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.5.6, rbenv: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.5.7, rbenv: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.5.8, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-protocol (v0.2.2, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-scp (v4.1.0, rbenv: 3.4.2) [gem]" level="application" />
@@ -108,12 +107,13 @@
     <orderEntry type="library" scope="PROVIDED" name="ostruct (v0.6.1, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.27.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.3.8.0, rbenv: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v1.5.9, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pp (v0.6.2, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="prettyprint (v0.2.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="prism (v1.4.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="propshaft (v1.1.0, rbenv: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="psych (v5.2.3, rbenv: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="public_suffix (v6.0.1, rbenv: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="psych (v5.2.4, rbenv: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="public_suffix (v6.0.2, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v6.6.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="raabro (v1.4.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.8.1, rbenv: 3.4.2) [gem]" level="application" />
