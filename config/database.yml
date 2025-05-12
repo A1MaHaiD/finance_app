@@ -4,55 +4,59 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem "sqlite3"
 #
-default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+#default: &default
+#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  timeout: 5000
 
 development:
-# For SqLite3
-#  <<: *default
-#  database: storage/development.sqlite3
+  # For SqLite3
+  # <<: *default
+  #  database: storage/development.sqlite3
 
-# For MySql2 database
-#  adapter: mysql2
-#  encoding: utf8
-#  database: finance_app_db
-#  username: finance_user
-#  password: <%#= ENV["DATABASE_PASSWORD"] %>
-#  port: 3306
+  # For MySql2 database
+  #  adapter: mysql2
+  #  encoding: utf8
+  #  database: finance_app_db
+  #  username: finance_user
+  #  password: <%#= ENV["DATABASE_PASSWORD"] %>
+  #  port: 3306
 
-# For PostgreSQL database
+  # For PostgreSQL database
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
   adapter: postgresql
   encoding: utf8
   username: finance_user
   database: finance_app_db
   password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: localhost
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
   database: storage/test.sqlite3
 
 
 # Store production database in the storage/ directory, which by default
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
-  primary:
-    <<: *default
-    database: storage/production.sqlite3
-  cache:
-    <<: *default
-    database: storage/production_cache.sqlite3
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *default
-    database: storage/production_queue.sqlite3
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *default
-    database: storage/production_cable.sqlite3
-    migrations_paths: db/cable_migrate
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  adapter: postgresql
+  encoding: utf8
+  host: ccpa7stkruda3o.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com
+  username: u6fom8m8mnbgn0
+  database: d28jnf947603o8
+  password: <%= ENV["HEROKU_PDB_PASSWORD"] %>
+  port: 5432
+
+#cable:
+#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  timeout: 5000
+#  database: da5ncsk40e51qe
+#  username: u6lmb5hcj3ln8s
