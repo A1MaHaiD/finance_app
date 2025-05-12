@@ -3,7 +3,7 @@
 ![Finance App Banner](docs/banner.png)
 
 Finance App is a web application that helps you manage your personal finances. With this application, you can create and manage expense/income categories, record financial operations, and generate detailed reports with interactive charts.
-link to website https://infinite-tundra-76682-60e16c41061d.herokuapp.com
+**Link to website https://infinite-tundra-76682-60e16c41061d.herokuapp.com**
 
 ## Features
 
