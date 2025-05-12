@@ -56,8 +56,12 @@ production:
 #  password: <%#= ENV["HEROKU_PDB_PASSWORD"] %>
 #  port: 5432
 
-#cable:
-#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#  timeout: 5000
-#  database: da5ncsk40e51qe
-#  username: u6lmb5hcj3ln8s
+cable:
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %> # Or adjust as needed
+  timeout: 5000 # Or adjust as needed
+
+cache:
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %> # Or adjust as needed
+  timeout: 5000 # Or adjust as needed
