@@ -4,8 +4,8 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
+# # Use PostgreSQL as the database for Active Record
+# gem "pg", "~> 1.5", ">= 1.5.9"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -52,6 +52,13 @@ gem "devise", "~> 4.9", ">= 4.9.4"
 # Use cancancan variants for authorization []
 gem "cancancan", "~> 3.6", ">= 3.6.1"
 
+group :production do
+  # Use PostgreSQL as the database for Active Record
+  gem "pg", "~> 1.5", ">= 1.5.9"
+  # Use mysql as the database for Active Record
+  # gem "mysql2", "~> 0.5.6"
+end
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -65,8 +72,8 @@ group :development, :test do
 end
 
 group :development do
-    # When mail is sent from your application, Letter Opener will open a preview in the browser instead of sending.
-    gem "letter_opener", "~> 1.10"
+  # When mail is sent from your application, Letter Opener will open a preview in the browser instead of sending.
+  gem "letter_opener", "~> 1.10"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   # Loads environment variables from `.env`.
   gem "dotenv", "~> 3.1", ">= 3.1.8"
@@ -80,6 +87,8 @@ group :test do
   # Add gem ActiveSupport
   # Loads environment variables from `.env`.
   gem "dotenv", "~> 3.1", ">= 3.1.8"
+  # Use sqlite3 as the database for Active Record
+  gem "sqlite3", ">= 2.1"
   gem "activesupport"
   gem "capybara"
   gem "selenium-webdriver"
