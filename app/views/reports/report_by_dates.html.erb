@@ -2,7 +2,7 @@
   <strong style="color: #8546bc "><%= Date.parse(params[:start_date]).strftime("%d-%m-%Y") %></strong> -
   <strong style="color: #8546bc"><%= Date.parse(params[:end_date]).strftime("%d-%m-%Y") %></strong></h1>
 <div style="display: flex; justify-content: center;">
-  <canvas id="reportDatesChart" width="1400" height="700"></canvas>
+  <canvas id="reportDatesChart" width="1300px" height="700"></canvas>
   <script>
       var operationType = '<%= params[:operation_type] %>';
       var backgroundColor = operationType === 'Витрати' ? 'rgb(218,146,18)' : 'rgb(83,188,127)';

@@ -1,3 +1,5 @@
 {
-  "recommendations": ["wakatime.vscode-wakatime"]
+  "recommendations": [
+    "wakatime.vscode-wakatime"
+  ]
 }
