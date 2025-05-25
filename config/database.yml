@@ -41,32 +41,24 @@ test:
   timeout: 5000
   database: storage/test.sqlite3
 
-
 # Store production database in the storage/ directory, which by default
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
-  url: <%= ENV['DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-#  adapter: postgresql
-#  encoding: utf8
-#  host: ccpa7stkruda3o.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com
-#  username: u6fom8m8mnbgn0
-#  database: d28jnf947603o8
-#  password: <%#= ENV["HEROKU_PDB_PASSWORD"] %>
-#  port: 5432
+  url: <%= ENV["HEROKU_DATABASE_URL"] %>
 
 cable:
-  url: <%= ENV['DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000 # Or adjust as needed
+  timeout: 5000
+  url: <%= ENV["HEROKU_DATABASE_URL"] %>
 
 cache:
-  url: <%= ENV['DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  url: <%= ENV["HEROKU_DATABASE_URL"] %>
 
 queue:
-  url: <%= ENV['DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  url: <%= ENV["HEROKU_DATABASE_URL"] %>

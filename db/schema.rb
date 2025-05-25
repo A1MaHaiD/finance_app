@@ -11,16 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_05_12_161334) do
-  create_schema "_heroku"
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-  enable_extension "pg_stat_statements"
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
@@ -31,7 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_161334) do
     t.string "operation_type"
     t.datetime "odate"
     t.string "description"
-    t.bigint "category_id", null: false
+    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_operations_on_category_id"
