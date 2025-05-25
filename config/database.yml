@@ -16,21 +16,22 @@ development:
   # For MySql2 database
   #  adapter: mysql2
   #  encoding: utf8
-  #  database: finance_app_db
-  #  username: finance_user
-  #  password: <%#= ENV["DATABASE_PASSWORD"] %>
-  #  port: 3306
+  #  database: <%= ENV["DEV_DB_NAME"] %>
+  #  username: <%= ENV["DEV_DB_USER"] %>
+  #  password: <%#= ENV["DEV_DB_PASSWORD"] %>
+  #  host: <%= ENV["DEV_DB_HOST"] || "localhost" %>
+  #  port: <%= ENV["DEV_DB_MYSQL_PORT"] || 3306 %>
 
   # For PostgreSQL database
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   adapter: postgresql
   encoding: utf8
-  username: finance_user
-  database: finance_app_db
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: localhost
-  port: 5432
+  username: <%= ENV["DEV_DB_USER"] %>
+  database: <%= ENV["DEV_DB_NAME"] %>
+  password: <%= ENV["DEV_DB_PASSWORD"] %>
+  host: <%= ENV["DEV_DB_HOST"] || "localhost" %>
+  port: <%= ENV["DEV_DB_POSTGRES_PORT"] || 5432 %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
