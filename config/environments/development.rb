@@ -32,20 +32,20 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address:              "smtp.example.com",
-  #   port:                 587,
-  #   domain:               "example.com",
-  #   user_name:            "your_username",
-  #   password:             "your_password",
-  #   authentication:       "plain",
-  #   enable_starttls_auto: true
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.gmail.com",
+    port:                 587,
+    domain:               "gmail.com",
+    user_name:            ENV["DEV_SMTP_USERNAME"],
+    password:             ENV["DEV_SMTP_PASSWORD"],
+    authentication:       "plain",
+    enable_starttls_auto: true
+  }
 
-  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
   # Make template changes take effect immediately.
