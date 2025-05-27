@@ -52,6 +52,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should have default mailer sender set correctly" do
-    assert_equal "super.lukianchuk2010@gmail.com", ApplicationMailer.default[:from]
+    assert_equal "from@example.com", ApplicationMailer.default[:from]
   end
 end
