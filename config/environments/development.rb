@@ -47,8 +47,6 @@ Rails.application.configure do
 
   # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  Rails.logger.info "SMTP user_name: #{Rails.application.credentials.dig(:smtp, :user_name).inspect}"
-
 
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
