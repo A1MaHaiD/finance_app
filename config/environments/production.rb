@@ -74,8 +74,7 @@ Rails.application.configure do
     authentication:       "plain",
     enable_starttls_auto: true
   }
-
-  Rails.logger.info "SMTP user_name: #{Rails.application.credentials.dig(:smtp, :user_name).inspect}"
+  
   config.action_mailer.perform_deliveries = true
   # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.raise_delivery_errors = true
