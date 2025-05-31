@@ -71,10 +71,10 @@ Rails.application.configure do
     domain:               "gmail.com",
     user_name:            Rails.application.credentials.dig(:smtp, :user_name),
     password:             Rails.application.credentials.dig(:smtp, :password),
-    authentication:       "plain",
+    authentication:       :plain,
     enable_starttls_auto: true
   }
-  
+
   config.action_mailer.perform_deliveries = true
   # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.raise_delivery_errors = true
