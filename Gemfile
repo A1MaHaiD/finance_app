@@ -45,7 +45,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 # Use Nokogiri variants [https://rubygems.org/gems/nokogiri]
-gem "nokogiri", "~> 1.18", ">= 1.18.4"
+gem "nokogiri", "~> 1.18"
 
 # Use Devise variants for authentication [https://rubygems.org/gems/devise]
 gem "devise", "~> 4.9", ">= 4.9.4"
